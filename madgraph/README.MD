@@ -57,24 +57,24 @@ MG5 will iterate possible subprocesses and generate a folder containing their cr
 Execute `launch <folder_name>` in MG5. It'll ask you about the setting to run events in, like this:
 ```
 The following switches determine which programs are run:
-/================== Description ===================|================= values =================|========== other options ===========\
+/================== Description ===================|================= values =================|========== other options ===========/
 | 1. Type of perturbative computation              |            order = NLO                   |     LO                             |
 | 2. No MC@[N]LO matching / event generation       |      fixed_order = OFF                   |     ON                             |
 | 3. Shower the generated events                   |           shower = OFF                   |     PYTHIA6Q|PYTHIA6PT|HERWIG6     |
 | 4. Decay onshell particles                       |          madspin = OFF                   |     ON|onshell                     |
 | 5. Add weights to events for new hypp.           |         reweight = Not Avail.            |     Please install module          |
 | 6. Run MadAnalysis5 on the events generated      |      madanalysis = Not Avail.            |     Please install module          |
-\==================================================================================================================================/
+/==================================================================================================================================/
 ```   
 Or this:
 ```
-/=================== Description ===================|============= values ==============|======== other options ========\
+/=================== Description ===================|============= values ==============|======== other options ========/
 | 1. Choose the shower/hadronization program        |        shower = Not Avail.        |     Please install module     |
 | 2. Choose the detector simulation program         |      detector = Not Avail.        |     Please install module     |
 | 3. Choose an analysis package (plot/convert)      |      analysis = Not Avail.        |     Please install module     |
 | 4. Decay onshell particles                        |       madspin = OFF               |     ON|onshell                |
 | 5. Add weights to events for new hypp.            |      reweight = Not Avail.        |     Please install module     |
-\=======================================================================================================================/
+/=======================================================================================================================/
 ```
 I don't know the reason why they are different for ggh and VBF (Asked Ben and he doesn't know too) but it shouldn't matter. 
 Disable shower, madspin, detector, reweight and analysis. Set order to NLO and fixed order to off.
@@ -100,7 +100,7 @@ Since the run_card.dat will be different for all processes, you'll need to make 
 Some VBF cross sections cannot pass pole check, so for VBF, edit `/Cards/FKS_params.dat`, 
 set `#IRPoleCheckThreshold` and `#PrecisionVirtualAtRunTime` to `-1d0`.
 
-Everything should run fine from that. The .lhe files should be in `\Events\run_##`. Note that every time you launch the folder with
+Everything should run fine from that. The .lhe files should be in `/Events/run_##`. Note that every time you launch the folder with
 different settings MG5 creates a new run_## in events instead of overwritting everything, so take note of the run number you are at.
 Or just delete everything in the folder and MG5 will start at run_01 again.
 
@@ -116,9 +116,9 @@ Copy cards in each subfolder of `./cards` into the `<process folder>/Cards` fold
 ## 3. Run jobs (Cori)
 Scripts are provided for the submission, preparation and execution of each process' simulation.
 
-`run-*process*.sh` starts a simulation on the current Cori node using a common MG5 copy. It cannot be run in parallel.
-`run-*process*-MG5.sh` (*NOT YET TESTED*) starts a simulation on the current Cori node using a fresh temporary MG5 copy for each simulation. It can be run in parallel. 
-`cori-job-*process*.sh` starts a Cori Haswell job.
+`run-<process>.sh` starts a simulation on the current Cori node using a common MG5 copy. It cannot be run in parallel.
+`run-<process>-MG5.sh` (*NOT YET TESTED*) starts a simulation on the current Cori node using a fresh temporary MG5 copy for each simulation. It can be run in parallel. 
+`cori-job-<process>.sh` starts a Cori Haswell job.
 
 The scripts should be put in the same folder as MG5 outputs.
 Please change the madgraph path when you execute the scripts.
