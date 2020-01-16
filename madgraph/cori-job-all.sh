@@ -3,7 +3,7 @@
 #SBATCH -C haswell
 #SBATCH -q regular
 #SBATCH -J vh-test-64-cores
-#SBATCH --mail-user=frankfu@uw.edu
+#SBATCH --mail-user=your-email@somewhere.something
 #SBATCH --mail-type=ALL
 #SBATCH -t 40:00:00
 
