@@ -1,0 +1,17 @@
+/cvmfs/sft.cern.ch/lcg/releases/gcc/6.2.0-b9934/x86_64-slc6/bin/g++ -o myexampleAnalysis.so -c myexampleAnalysis.cc  \
+	-g -std=c++0x  -O2 -Wall  -Wno-shadow -fPIC -shared \
+	`/global/homes/f/frankfu/software/fastjet-install/bin/fastjet-config --cxxflags --plugins`  \
+	-I/global/homes/f/frankfu/software/pythia8244/include \
+	`root-config --cflags`   
+/cvmfs/sft.cern.ch/lcg/releases/gcc/6.2.0-b9934/x86_64-slc6/bin/g++ -o myexample.so -c myexample.C  \
+	-g -std=c++0x  -O2 -Wall  -Wno-shadow -fPIC -shared \
+	`/global/homes/f/frankfu/software/fastjet-install/bin/fastjet-config --cxxflags --plugins` \
+	-I/global/homes/f/frankfu/software/pythia8244/include \
+	-I  \
+	`root-config --cflags` 
+/cvmfs/sft.cern.ch/lcg/releases/gcc/6.2.0-b9934/x86_64-slc6/bin/g++ myexample.so myexampleAnalysis.so -o myexample.exe \
+	-g -std=c++0x  -O2 -Wall  -Wno-shadow  \
+	`root-config --glibs`  \
+	-L/global/homes/f/frankfu/software/fastjet-install/lib `/global/homes/f/frankfu/software/fastjet-install/bin/fastjet-config --libs --plugins ` -lRecursiveTools \
+	-L/global/homes/f/frankfu/software/pythia8244/lib -lpythia8 -ldl \
+	-L -lboost_program_options 

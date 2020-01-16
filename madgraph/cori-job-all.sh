@@ -1,0 +1,171 @@
+#!/bin/bash
+#SBATCH -N 1
+#SBATCH -C haswell
+#SBATCH -q regular
+#SBATCH -J vh-test-64-cores
+#SBATCH --mail-user=frankfu@uw.edu
+#SBATCH --mail-type=ALL
+#SBATCH -t 40:00:00
+
+
+#OpenMP settings:
+export OMP_NUM_THREADS=1
+export OMP_PLACES=threads
+export OMP_PROC_BIND=spread
+
+
+#run the application:
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vh.sh
+
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-vbf.sh
+
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+srun -n1 -c64 --cpu_bind=cores /global/homes/f/frankfu/scratch/higgs-classifier/MG5/run-ggh.sh
+
+
