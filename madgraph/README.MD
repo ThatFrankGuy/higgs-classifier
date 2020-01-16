@@ -32,13 +32,13 @@ add process p p > H v j [QCD] @1
 output vh
 ```
 
-The folder ./cards contains all the necessary cards to generate 500000 candidate events with 200GeV < pT_higgs < 2000GeV. (since the regime is not resolved, the resulting jet should consist of both bb~ jets and the entire pT of Higgs)
+The folder `./cards` contains all the necessary cards to generate 500000 candidate events with 200GeV < pT_higgs < 2000GeV. (since the regime is not resolved, the resulting jet should consist of both bb~ jets and the entire pT of Higgs)
 
 The event selection will be done during parton showing.
 
-The folder ./madgraph-scripts contains all necessary madgraph scripts to launch and produce said event samples.
+The folder `./madgraph-scripts` contains all necessary madgraph scripts to launch and produce said event samples.
 
-The folder ./cori-job-scripts contains all .sh shells to launch Cori jobs producing said event samples.
+The folder `./cori-job-scripts` contains all .sh shells to launch Cori jobs producing said event samples.
 
 Below are the instructions to manually produce higgs classification samples, and how to produce samples faster using COri jobs. 
 
@@ -97,10 +97,10 @@ Since the run_card.dat will be different for all processes, you'll need to make 
 ```
 
 
-Some VBF cross sections cannot pass pole check, so for VBF, edit /Cards/FKS_params.dat, 
+Some VBF cross sections cannot pass pole check, so for VBF, edit `/Cards/FKS_params.dat`, 
 set `#IRPoleCheckThreshold` and `#PrecisionVirtualAtRunTime` to `-1d0`.
 
-Everything should run fine from that. The .lhe files should be in \Events\run_##. Note that every time you launch the folder with
+Everything should run fine from that. The .lhe files should be in `\Events\run_##`. Note that every time you launch the folder with
 different settings MG5 creates a new run_## in events instead of overwritting everything, so take note of the run number you are at.
 Or just delete everything in the folder and MG5 will start at run_01 again.
 
@@ -111,17 +111,18 @@ Execute codes for each process, then do `output <folder_name>` in MG5 (`./MG5_aM
 MG5 will iterate possible subprocesses and generate a folder containing their cross sections and Feynman diagrams. 
 
 ## 2. Prepare cards
-Copy cards in each subfolder of ./cards into the <process folder>/Cards folder of each corresponding output.
+Copy cards in each subfolder of `./cards` into the `<process folder>/Cards` folder of each corresponding output.
 
 ## 3. Run jobs (Cori)
 Scripts are provided for the submission, preparation and execution of each process' simulation.
 
-run-<process>.sh starts a simulation on the current Cori node using a common MG5 copy. It cannot be run in parallel.
-run-<process>-MG5.sh (*NOT YET TESTED*) starts a simulation on the current Cori node using a fresh temporary MG5 copy for each simulation. It can be run in parallel. 
-cori-job-<process>.sh starts a Cori Haswell job.
+`run-*process*.sh` starts a simulation on the current Cori node using a common MG5 copy. It cannot be run in parallel.
+`run-*process*-MG5.sh` (*NOT YET TESTED*) starts a simulation on the current Cori node using a fresh temporary MG5 copy for each simulation. It can be run in parallel. 
+`cori-job-*process*.sh` starts a Cori Haswell job.
 
 The scripts should be put in the same folder as MG5 outputs.
 Please change the madgraph path when you execute the scripts.
+
 # What's next?
 
-Once the events are generated, go find and copy out the .lhe file from your latest run, and refer to the README in ../shower.
+Once the events are generated, go find and copy out the .lhe file from your latest run using `extract-lhe.sh`. Then go use stuff inside `../shower`.
