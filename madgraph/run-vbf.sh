@@ -22,6 +22,7 @@ done
 # create a script file containing unique seed
 echo -e "launch ~/scratch/higgs-classifier/MG5/vbf" >> $scriptname
 echo -e $"set iseed "$seed >> $scriptname
+#echo -e $"set shower OFF" >> $scriptname # Disable showering to save time. May cause issues. Need to check.
 
 # setup modules
 module unload PrgEnv-intel
