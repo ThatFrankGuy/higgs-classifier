@@ -1,3 +1,36 @@
+# Importing
+import numpy as np
+import math
+import random
+import os
+import re
+import matplotlib
+import time
+import pickle 
+
+from itertools import groupby
+from io import StringIO
+from mpl_toolkits.axes_grid1 import make_axes_locatable
+
+import pyjet
+from pyjet import cluster, DTYPE_PTEPM
+from pyjet.testdata import get_event
+
+import matplotlib.pyplot as plt
+import matplotlib.path as mpath
+import matplotlib.lines as mlines
+import matplotlib.patches as mpatches
+from matplotlib.pyplot import cm
+from matplotlib.colors import LinearSegmentedColormap
+from matplotlib.collections import PatchCollection
+
+import scipy
+import scipy.optimize as opt
+from scipy.interpolate import griddata
+from scipy import interpolate
+from scipy.optimize import least_squares
+
+
 # This file contains some substructure variables
 
 def find_new_var_3(reclustered,clustered,pt_cut = 1):
