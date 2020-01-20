@@ -56,7 +56,7 @@ Make sure you have FastJet installed, or things will go wrong at step two. Instr
 
 
 ## 1. Generate Feynman diagrams
-Execute codes for each process, then do `output <folder_name>` in MG5 (`/MG5_aMC_v2_6_6/bin/mg5_aMC`). 
+Execute codes for each process, then do `output <folder_name>` in MG5 (`<MG5 path>/bin/mg5_aMC`). 
 MG5 will iterate possible subprocesses and generate a folder containing their cross sections and Feynman diagrams. 
 
 
@@ -118,7 +118,7 @@ Execute codes for each process, then do `output <folder_name>` in MG5 (`/MG5_aMC
 MG5 will iterate possible subprocesses and generate a folder containing their cross sections and Feynman diagrams. 
 
 ## 2. Prepare cards
-Copy cards in each subfolder of `/cards` into the `<process folder>/Cards` folder of each corresponding output.
+Copy cards in each subfolder of `cards/` into the `<process folder>/Cards/` folder of each corresponding output.
 
 ## 3. Run jobs (Cori)
 Scripts are provided for the submission, preparation and execution of each process' simulation.
@@ -132,4 +132,4 @@ Please change the madgraph path when you execute the scripts.
 
 # What's next?
 
-Once the events are generated, go find and copy out the .lhe file from your latest run using `extract-lhe.sh`. Then go use stuff inside `./shower`.
+Once the events are generated, go find and copy out the .lhe file from your latest run using `extract-lhe.sh`. Then go use stuff inside `../shower/`.
