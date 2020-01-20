@@ -2,7 +2,7 @@ This folder contains notebooks for analysis and relevant python libraries.
 
 Three libraries exist uner this directory:
 csv_decoder.py reads .csv file produced by Josh's showering program, performs clustering and generates images
-save_and_load.py saves and loads a fixed list of essential data needed for analysis into .npy files to avoid generating everything fresh every time. These essential data are listed as follow:
+save_and_load.py saves and loads a fixed list of essential data needed for analysis into .npy files to avoid generating everything fresh every time. The list of essential data is as follows:
 
 	new_background_event_list, new_signal_event_list, (arrays, saved and loaded with save() and load() from .npy)
 	new_background_mass_list, new_signal_mass_list, (arrays, saved and from .npy)

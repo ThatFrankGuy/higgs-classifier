@@ -32,15 +32,20 @@ add process p p > H v j [QCD] @1
 output vh
 ```
 
-The folder `./cards` contains all the necessary cards to generate 500000 candidate events with 200GeV < pT_higgs < 2000GeV. (since the regime is not resolved, the resulting jet should consist of both bb~ jets and the entire pT of Higgs)
+The folder `cards/` contains all the necessary cards to generate 10000 candidate events with 200GeV < pT_higgs < 2000GeV. (since the regime is not resolved, the resulting jet should consist of both bb~ jets and the entire pT of Higgs)
 
 The event selection will be done during parton showing.
 
-The folder `./madgraph-scripts` contains all necessary madgraph scripts to launch and produce said event samples.
 
-The folder `./cori-job-scripts` contains all .sh shells to launch Cori jobs producing said event samples.
+`run-<process>.sh` produces 10K sample for a higgs process using a new random seed. All `run-<process>.sh` shares the same MG5 executables, and therefore cannot be exucuted simutaneously by multiple slurm nodes. The log and commands files will be saved in `<process>-run/`. Please change the madgraph program path before using.
 
-Below are the instructions to manually produce higgs classification samples, and how to produce samples faster using COri jobs. 
+`run-<process>.sh` produces 10K sample for a higgs process using a new random seed. It uses temprary madgraph copy, and can be executed simutaneously by multiple slurm nodes. The log and madgraph commands will be saved in `<process>-run/`. Please change the madgraph path before using.
+
+`cori-job-all.sh` runs each madgraph script 50 times to generate 500k samples for each process. For use on Cori Slurm submission.
+
+# IN ORDER FOR ALL .sh SCRIPTS TO WORK, THE 4 PROCESSES' DIRECTORIES SHOULD BE COPIED INTO A SAME PARENT FOLDER AND RENAMED vbf/, vh/, ggh-hj/ and ggh-hjj/ RESPECTIVELY. ALL .sh SCRIPTS SHOULD BE COPIED TO THE PARENT FOLDER BEFORE EXECUTING.
+
+Below are the instructions to manually produce higgs classification samples, and to produce samples faster using Cori jobs. 
 
 # Manual instruction
 
@@ -49,7 +54,7 @@ Make sure you have FastJet installed, or things will go wrong at step two. Instr
 
 
 ## 1. Generate Feynman diagrams
-Execute codes for each process, then do `output <folder_name>` in MG5 (`./MG5_aMC_v2_6_6/bin/mg5_aMC`). 
+Execute codes for each process, then do `output <folder_name>` in MG5 (`/MG5_aMC_v2_6_6/bin/mg5_aMC`). 
 MG5 will iterate possible subprocesses and generate a folder containing their cross sections and Feynman diagrams. 
 
 
@@ -107,17 +112,17 @@ Or just delete everything in the folder and MG5 will start at run_01 again.
 # Cori instruction
 
 ## 1. Generate Feynman diagrams
-Execute codes for each process, then do `output <folder_name>` in MG5 (`./MG5_aMC_v2_6_6/bin/mg5_aMC`). 
+Execute codes for each process, then do `output <folder_name>` in MG5 (`/MG5_aMC_v2_6_6/bin/mg5_aMC`). 
 MG5 will iterate possible subprocesses and generate a folder containing their cross sections and Feynman diagrams. 
 
 ## 2. Prepare cards
-Copy cards in each subfolder of `./cards` into the `<process folder>/Cards` folder of each corresponding output.
+Copy cards in each subfolder of `/cards` into the `<process folder>/Cards` folder of each corresponding output.
 
 ## 3. Run jobs (Cori)
 Scripts are provided for the submission, preparation and execution of each process' simulation.
 
 `run-<process>.sh` starts a simulation on the current Cori node using a common MG5 copy. It cannot be run in parallel.
-`run-<process>-MG5.sh` (*NOT YET TESTED*) starts a simulation on the current Cori node using a fresh temporary MG5 copy for each simulation. It can be run in parallel. 
+`run-<process>-MG5.sh`  starts a simulation on the current Cori node using a fresh temporary MG5 copy for each simulation. It can be run in parallel. 
 `cori-job-<process>.sh` starts a Cori Haswell job.
 
 The scripts should be put in the same folder as MG5 outputs.
@@ -125,4 +130,4 @@ Please change the madgraph path when you execute the scripts.
 
 # What's next?
 
-Once the events are generated, go find and copy out the .lhe file from your latest run using `extract-lhe.sh`. Then go use stuff inside `../shower`.
+Once the events are generated, go find and copy out the .lhe file from your latest run using `extract-lhe.sh`. Then go use stuff inside `./shower`.

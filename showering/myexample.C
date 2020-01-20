@@ -202,8 +202,11 @@ int main( int argc, char* argv[] ){
       numTotal++;
       if (isYes == -10) {
       		if (pythia.info.atEndOfFile()) break;
-		cout << pythia.info.nSelected() << endl;
-      		cout << "Failed at now" << endl;
+          if (pythia.info.nSelected() == 0){
+             cout << "File does not exist!" << endl;
+          } exit(); //quit if it is an empty fail
+      		cout << "Failed to perform parton shower, error code:" << endl;
+          cout << pythia.info.nSelected() << endl;
 		continue;
       }
       if (isYes > 50){

@@ -1,4 +1,4 @@
-Joshua Lin, Modified and updated by Frank Fu
+Pre-selection and pythia showering code by Joshua Lin, updated and documented by Frank Fu
 
 To compile:
 This code uses fastjet 3.3.3, pythia 8.2.4.4 and fastjet-contrib 1.042
@@ -13,4 +13,9 @@ The compiled file will be called `./myexample.exe`.
 To run: 
 ./myexample.exe signal.cmnd (LOCATION TO STORE EVENTS) (LHE OUTPUT FROM MG5)
 
-A script, `shower.sh`, is written to perform showering for all .lhe files in `/<process>-lhe` and store outputs in `/<process>-csv`.
+A script, `shower.sh`, is written to perform showering for all .lhe files in `/<process>-lhe` and store outputs in `/<process>-csv`. Before you run this script, you must set up root:
+```
+source /global/project/projectdirs/atlas/scripts/setupATLAS.sh
+setupATLAS -c slc6+batch
+lsetup "root 6.14.04-x86_64-slc6-gcc62-opt"
+```

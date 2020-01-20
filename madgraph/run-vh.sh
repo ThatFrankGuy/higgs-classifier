@@ -4,7 +4,7 @@
 mkdir -p vh-run
 
 # setup path
-
+MG5path=/global/homes/f/frankfu/scratch/software/MG5_aMC_v2_6_7/bin/mg5_aMC
 # generate a new seed.
 seed=$RANDOM
 
@@ -32,6 +32,6 @@ module load PrgEnv-gnu
 # launch madgraph processes
 echo -e $"Start time: "$date >> $logname
 
-/global/homes/f/frankfu/scratch/software/MG5_aMC_v2_6_7/bin/mg5_aMC $scriptname >> $logname
+$MG5path $scriptname >> $logname
 
 echo -e $"End time: "$date >> $logname
