@@ -43,7 +43,9 @@ The event selection will be done during parton showing.
 
 `cori-job-all.sh` runs each madgraph script 50 times to generate 500k samples for each process. For use on Cori Slurm submission.
 
-# IN ORDER FOR ALL .sh SCRIPTS TO WORK, THE 4 PROCESSES' DIRECTORIES SHOULD BE COPIED INTO A SAME PARENT FOLDER AND RENAMED vbf/, vh/, ggh-hj/ and ggh-hjj/ RESPECTIVELY. ALL .sh SCRIPTS SHOULD BE COPIED TO THE PARENT FOLDER BEFORE EXECUTING.
+`extract-lhe.sh` copies all event-level .lhe files from `<process>/` into `<process>-lhe/` and renames them to `<random seed>.lhe` 
+
+**IN ORDER FOR ALL .sh SCRIPTS TO WORK, THE 4 PROCESSES' DIRECTORIES SHOULD BE COPIED INTO A SAME PARENT FOLDER AND RENAMED vbf/, vh/, ggh-hj/ and ggh-hjj/ RESPECTIVELY. ALL .sh SCRIPTS SHOULD BE COPIED TO THE PARENT FOLDER BEFORE EXECUTING.**
 
 Below are the instructions to manually produce higgs classification samples, and to produce samples faster using Cori jobs. 
 
