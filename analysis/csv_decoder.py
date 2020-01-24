@@ -1,3 +1,6 @@
+# This library reads in the .csv files produced by Josh's pythia code.
+# Note that all datasets are sorted BACKGROUND FIRST.
+
 # Importing
 import numpy as np
 import math
