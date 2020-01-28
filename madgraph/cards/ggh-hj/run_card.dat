@@ -118,8 +118,8 @@
  -1.0  = ptamax    ! maximum pt for the photons
  -1.0  = ptlmax    ! maximum pt for the charged leptons
  -1.0  = missetmax ! maximum missing Et (sum of neutrino's momenta)
- {25:200} = pt_min_pdg ! Max pT for a massive particle
- {25:2000} = pt_max_pdg ! Max pT for a massive particle
+ {25:450} = pt_min_pdg ! Min pT for a massive particle
+ {25:1700} = pt_max_pdg ! Max pT for a massive particle
 #
 # For display option for energy cut in the partonic center of mass frame type 'update ecut'
 #

@@ -27,7 +27,7 @@ from pyjet.testdata import get_event
 # trimmed mass of identified jet \n
 # \n
 # and produces a event_list
-def return_event_list(fileName,max_Read = float("inf"),weighted=0,pt_cut=1):
+def return_event_list(fileName,max_read = float("inf"),weighted=0,pt_cut=1):
     
     printed = 0
     
@@ -36,7 +36,7 @@ def return_event_list(fileName,max_Read = float("inf"),weighted=0,pt_cut=1):
     #print(len(tmp_events))
     for x in tmp_events:
         try:
-            if len(event_list) == max_Read: #FRANK# limit event size. If violated, interrupt the entire method
+            if len(event_list) == max_read: #FRANK# limit event size. If violated, interrupt the entire method
                 return(event_list,mass_list)
             if weighted == 0:
                                 
@@ -92,9 +92,9 @@ def return_image_list(event_list, width=40, height=40):
 
 # This method loads event files to produce:
 # event_list, mass_list, image_list, files_Read and weight_list
-def load_events(event_type,debug = 0, max_Read = float("inf"), max_Files = float("inf"), weighted=0, \
-                path = "/data1/users/jzlin/NLO/", contains = "philback", pt_cut = 0, width=40, height=40):
-    print("Loading events for " + event_type)
+def load_events(path, contains, debug = 0, max_read = float("inf"), max_files = float("inf"), weighted=0, \
+                pt_cut = 0, width=40, height=40):
+    print('Loading .csv event files from ' + path + ' containing \"' + contains + '\"')
     reading_event_list,reading_mass_list = [],[]
     reading_image_list = []
     reading_weight_list = []
@@ -103,13 +103,13 @@ def load_events(event_type,debug = 0, max_Read = float("inf"), max_Files = float
     for i in os.listdir(path):
         print('Currently reading: '+ str(i))
         
-        if (files_Read == max_Files):
+        if (files_Read == max_files):
             break
-        if len(reading_event_list) >= max_Read:
+        if len(reading_event_list) >= max_read:
             return(reading_event_list,reading_mass_list,reading_image_list,files_Read)
         if 'swp' in i:
             continue
-        if os.path.isfile(os.path.join(path,i)) and (event_type+contains) in i:
+        if os.path.isfile(os.path.join(path,i)) and (contains) in i:
             if debug==1:
                 print(i)
                 print(os.path.join(path,i))
@@ -403,8 +403,18 @@ def softdrop(jcon,z=0.1,debug = 0):
         to_check.pop(0)
     return softcon
 
-# Normalize and zero-center any image
-def zero_center_and_normalize(background_images, signal_images):
+
+# Take in a tuple of image lists, normalze and zero zenter all of them.
+def zero_center_and_normalize(image_lists):
+    tmp_av = np.average(np.concatenate(image_lists), axis=0)
+    tmp_sd = np.std(np.concatenate(image_lists), axis=0)
+    for j in range(len(image_lists)):
+	    for i in range(len(image_lists[j])):
+	        image_lists[j][i] = np.divide((image_lists[j][i] - tmp_av), (tmp_sd+1e-5)) #perhaps add some r to temp_sd to suppress noise
+    return image_lists
+
+    # Normalize and zero-center a pair (background and sample) of images
+def zero_center_and_normalize_pair(background_images, signal_images):
     tmp_av = np.average(np.concatenate((background_images, signal_images)), axis=0)
     tmp_sd = np.std(np.concatenate((background_images, signal_images)), axis=0)
     for i in range(len(background_images)):
@@ -412,3 +422,4 @@ def zero_center_and_normalize(background_images, signal_images):
     for i in range(len(signal_images)):
         signal_images[i] = np.divide((signal_images[i] - tmp_av), (tmp_sd+1e-5))#/tmp_sd
     return background_images, signal_images
+
