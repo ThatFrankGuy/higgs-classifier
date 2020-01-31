@@ -1,0 +1,12 @@
+ 0.20027E-01 0.74486E-03 0.00000E+00     2440     1706    1       65 0.325E+04 0.12838E-05  0.20027E-01  0.27201E+00  0.10222E+00      151
+   1    0.20027E-01    0.74486E-03    0.18368E+01    0.45604E+00    0.20027E-01
+ <run_statistics> 
+<u_return_code>           0,           0,           0,           0,           0,                                                                                                   0,        2438,           1,           0,           0</u_return_code>
+<t_return_code>           0,        2439,           0,           0,           0,                                                                                                   0,           0,           0,           0,           0</t_return_code>
+<h_return_code>           0,           0,        2439,           0,           0,                                                                                                   0,           0,           0,           0,           0</h_return_code>
+ <average_time>0.1221351876653281</average_time>
+ <cumulated_time>298.8026780000000144</cumulated_time>
+ <max_prec>0.0000356419998524</max_prec>
+ <min_prec>0.0000000000000098</min_prec>
+ <n_evals>2439</n_evals>
+ </run_statistics>

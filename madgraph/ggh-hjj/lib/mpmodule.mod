@@ -1,0 +1,1 @@
+/global/u1/f/frankfu/software/MG5_aMC_v2_6_7/vendor/CutTools/includects/mpmodule.mod

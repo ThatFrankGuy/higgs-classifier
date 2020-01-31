@@ -1,0 +1,1214 @@
+
+<HTML> 
+<HEAD> 
+     
+    <META HTTP-EQUIV="EXPIRES" CONTENT="20" > 
+    <TITLE>Online Event Generation</TITLE>
+    <link rel=stylesheet href="./HTML/mgstyle.css" type="text/css">
+</HEAD>
+<BODY>
+<script type="text/javascript">
+function UrlExists(url) {
+  var http = new XMLHttpRequest();
+  http.open('HEAD', url, false);
+  try{
+     http.send()
+     }
+  catch(err){
+   return 1==2;
+  }
+  return http.status!=404;
+}
+function check_link(url,alt, id){
+    var obj = document.getElementById(id);
+    if ( ! UrlExists(url)){
+       if ( ! UrlExists(alt)){
+         obj.href = url;
+         return 1==1;
+        }
+       obj.href = alt;
+       return 1 == 2;
+    }
+    obj.href = url;
+    return 1==1;
+}
+</script>    
+    <H2 align=center> Results in the loop_sm for p p > H v [QCD] @0
+, p p > H v j [QCD] @1
+ </H2> 
+    <HR>
+    
+    <br>
+    <br>
+    <H2 align="center"> Available Results </H2>
+        <TABLE BORDER=2 align="center">  
+            <TR align="center">
+                <TH>Run</TH> 
+                <TH>Collider</TH> 
+                <TH> Banner </TH>
+                <TH> Cross section (pb) </TH> 
+                <TH> Events  </TH>
+                <TH> Data </TH>  
+                <TH>Output</TH>
+                <TH>Action</TH> 
+            </TR>      
+            
+        <tr>
+        <td rowspan=2>run_01</td> 
+        <td rowspan=2><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        <td rowspan=2> <a href="./Events/run_01/run_01_tag_1_banner.txt">tag_1</a></td>
+        
+        <td rowspan=2><center><a href="./HTML/run_01/results.html"> 0.01419 <font face=symbol>&#177;</font> 0.00011 </a>  </center></td>
+        <td rowspan=2><center> 10000<center></td><td> parton noshower </td>
+        <td>  <a  id='run_01_tag_1_parton_LHE' href='./Events/run_01/events.lhe.gz' onClick="check_link('./Events/run_01/events.lhe.gz','./Events/run_01/events.lhe','run_01_tag_1_parton_LHE')">LHE</a> <a href="./Events/run_01/summary.txt">summary</a></td>
+        <td> <INPUT TYPE=SUBMIT VALUE='remove run' onClick="alert('Launch ./bin/aMCatNLO in a shell, and run the following command: remove run_01 parton --tag=tag_1')"></td>
+        </tr>
+        <td> shower noshower </td>
+        <td> </td>
+        <td> <INPUT TYPE=SUBMIT VALUE='remove run' onClick="alert('Launch ./bin/aMCatNLO in a shell, and run the following command: remove run_01 parton --tag=tag_1')"></td>
+        </tr>
+        </tr>
+        
+        <tr>
+        <td rowspan=1>run_02</td> 
+        <td rowspan=1><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        <td rowspan=1> <a href="./Events/run_02/run_02_tag_1_banner.txt">tag_1</a></td>
+        
+        <td rowspan=1><center><a href="./HTML/run_02/results.html"> 0.249 <font face=symbol>&#177;</font> 0.0011 </a>  </center></td>
+        <td rowspan=1><center> 10000<center></td><td> shower noshower </td>
+        <td> </td>
+        <td> <INPUT TYPE=SUBMIT VALUE='remove run' onClick="alert('Launch ./bin/aMCatNLO in a shell, and run the following command: remove run_02 parton --tag=tag_1')"></td>
+        </tr>
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_03</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_04</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_05</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=1>run_06</td> 
+        <td rowspan=1><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        <td rowspan=1> <a href="./Events/run_06/run_06_tag_1_banner.txt">tag_1</a></td>
+        
+        <td rowspan=1><center><a href="./HTML/run_06/results.html"> 0.01441 <font face=symbol>&#177;</font> 0.00011 </a>  </center></td>
+        <td rowspan=1><center> 10000<center></td><td> parton noshower </td>
+        <td>  <a  id='run_06_tag_1_parton_LHE' href='./Events/run_06/events.lhe.gz' onClick="check_link('./Events/run_06/events.lhe.gz','./Events/run_06/events.lhe','run_06_tag_1_parton_LHE')">LHE</a> <a href="./Events/run_06/summary.txt">summary</a></td>
+        <td> <INPUT TYPE=SUBMIT VALUE='remove run' onClick="alert('Launch ./bin/aMCatNLO in a shell, and run the following command: remove run_06 parton --tag=tag_1')"></td>
+        </tr>
+        </tr>
+        
+        <tr>
+        <td rowspan=1>run_07</td> 
+        <td rowspan=1><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        <td rowspan=1> <a href="./Events/run_07/run_07_tag_1_banner.txt">tag_1</a></td>
+        
+        <td rowspan=1><center><a href="./HTML/run_07/results.html"> 0.01421 <font face=symbol>&#177;</font> 0.00011 </a>  </center></td>
+        <td rowspan=1><center> 10000<center></td><td> parton noshower </td>
+        <td>  <a  id='run_07_tag_1_parton_LHE' href='./Events/run_07/events.lhe.gz' onClick="check_link('./Events/run_07/events.lhe.gz','./Events/run_07/events.lhe','run_07_tag_1_parton_LHE')">LHE</a> <a href="./Events/run_07/summary.txt">summary</a></td>
+        <td> <INPUT TYPE=SUBMIT VALUE='remove run' onClick="alert('Launch ./bin/aMCatNLO in a shell, and run the following command: remove run_07 parton --tag=tag_1')"></td>
+        </tr>
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_08</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_09</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_10</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_11</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_12</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_13</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_14</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_15</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_16</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=1>run_17</td> 
+        <td rowspan=1><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        <td rowspan=1> <a href="./Events/run_17/run_17_tag_1_banner.txt">tag_1</a></td>
+        
+        <td rowspan=1><center><a href="./HTML/run_17/results.html"> 0.01434 <font face=symbol>&#177;</font> 0.00011 </a>  </center></td>
+        <td rowspan=1><center> 10000<center></td><td> parton noshower </td>
+        <td>  <a  id='run_17_tag_1_parton_LHE' href='./Events/run_17/events.lhe.gz' onClick="check_link('./Events/run_17/events.lhe.gz','./Events/run_17/events.lhe','run_17_tag_1_parton_LHE')">LHE</a> <a href="./Events/run_17/summary.txt">summary</a></td>
+        <td> <INPUT TYPE=SUBMIT VALUE='remove run' onClick="alert('Launch ./bin/aMCatNLO in a shell, and run the following command: remove run_17 parton --tag=tag_1')"></td>
+        </tr>
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_18</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_19</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_20</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=1>run_21</td> 
+        <td rowspan=1><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        <td rowspan=1> <a href="./Events/run_21/run_21_tag_1_banner.txt">tag_1</a></td>
+        
+        <td rowspan=1><center><a href="./HTML/run_21/results.html"> 0.01426 <font face=symbol>&#177;</font> 0.00012 </a>  </center></td>
+        <td rowspan=1><center> 10000<center></td><td> parton noshower </td>
+        <td>  <a  id='run_21_tag_1_parton_LHE' href='./Events/run_21/events.lhe.gz' onClick="check_link('./Events/run_21/events.lhe.gz','./Events/run_21/events.lhe','run_21_tag_1_parton_LHE')">LHE</a> <a href="./Events/run_21/summary.txt">summary</a></td>
+        <td> <INPUT TYPE=SUBMIT VALUE='remove run' onClick="alert('Launch ./bin/aMCatNLO in a shell, and run the following command: remove run_21 parton --tag=tag_1')"></td>
+        </tr>
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_22</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_23</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_24</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_25</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=1>run_26</td> 
+        <td rowspan=1><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        <td rowspan=1> <a href="./Events/run_26/run_26_tag_1_banner.txt">tag_1</a></td>
+        
+        <td rowspan=1><center><a href="./HTML/run_26/results.html"> 0.01436 <font face=symbol>&#177;</font> 0.00011 </a>  </center></td>
+        <td rowspan=1><center> 10000<center></td><td> parton noshower </td>
+        <td>  <a  id='run_26_tag_1_parton_LHE' href='./Events/run_26/events.lhe.gz' onClick="check_link('./Events/run_26/events.lhe.gz','./Events/run_26/events.lhe','run_26_tag_1_parton_LHE')">LHE</a> <a href="./Events/run_26/summary.txt">summary</a></td>
+        <td> <INPUT TYPE=SUBMIT VALUE='remove run' onClick="alert('Launch ./bin/aMCatNLO in a shell, and run the following command: remove run_26 parton --tag=tag_1')"></td>
+        </tr>
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_27</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_28</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_29</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_30</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_31</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_32</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_33</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_34</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_35</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_36</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=1>run_37</td> 
+        <td rowspan=1><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        <td rowspan=1> <a href="./Events/run_37/run_37_tag_1_banner.txt">tag_1</a></td>
+        
+        <td rowspan=1><center><a href="./HTML/run_37/results.html"> 0.01426 <font face=symbol>&#177;</font> 0.0001 </a>  </center></td>
+        <td rowspan=1><center> 10000<center></td><td> parton noshower </td>
+        <td>  <a  id='run_37_tag_1_parton_LHE' href='./Events/run_37/events.lhe.gz' onClick="check_link('./Events/run_37/events.lhe.gz','./Events/run_37/events.lhe','run_37_tag_1_parton_LHE')">LHE</a> <a href="./Events/run_37/summary.txt">summary</a></td>
+        <td> <INPUT TYPE=SUBMIT VALUE='remove run' onClick="alert('Launch ./bin/aMCatNLO in a shell, and run the following command: remove run_37 parton --tag=tag_1')"></td>
+        </tr>
+        </tr>
+        
+        <tr>
+        <td rowspan=1>run_38</td> 
+        <td rowspan=1><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        <td rowspan=1> <a href="./Events/run_38/run_38_tag_1_banner.txt">tag_1</a></td>
+        
+        <td rowspan=1><center><a href="./HTML/run_38/results.html"> 0.01429 <font face=symbol>&#177;</font> 0.0001 </a>  </center></td>
+        <td rowspan=1><center> 10000<center></td><td> parton noshower </td>
+        <td>  <a  id='run_38_tag_1_parton_LHE' href='./Events/run_38/events.lhe.gz' onClick="check_link('./Events/run_38/events.lhe.gz','./Events/run_38/events.lhe','run_38_tag_1_parton_LHE')">LHE</a> <a href="./Events/run_38/summary.txt">summary</a></td>
+        <td> <INPUT TYPE=SUBMIT VALUE='remove run' onClick="alert('Launch ./bin/aMCatNLO in a shell, and run the following command: remove run_38 parton --tag=tag_1')"></td>
+        </tr>
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_39</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_40</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_41</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_42</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_43</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_44</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_45</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_46</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_47</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_48</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=1>run_49</td> 
+        <td rowspan=1><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        <td rowspan=1> <a href="./Events/run_49/run_49_tag_1_banner.txt">tag_1</a></td>
+        
+        <td rowspan=1><center><a href="./HTML/run_49/results.html"> 0.01423 <font face=symbol>&#177;</font> 0.0001 </a>  </center></td>
+        <td rowspan=1><center> 10000<center></td><td> parton noshower </td>
+        <td>  <a  id='run_49_tag_1_parton_LHE' href='./Events/run_49/events.lhe.gz' onClick="check_link('./Events/run_49/events.lhe.gz','./Events/run_49/events.lhe','run_49_tag_1_parton_LHE')">LHE</a> <a href="./Events/run_49/summary.txt">summary</a></td>
+        <td> <INPUT TYPE=SUBMIT VALUE='remove run' onClick="alert('Launch ./bin/aMCatNLO in a shell, and run the following command: remove run_49 parton --tag=tag_1')"></td>
+        </tr>
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_50</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=1>run_51</td> 
+        <td rowspan=1><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        <td rowspan=1> <a href="./Events/run_51/run_51_tag_1_banner.txt">tag_1</a></td>
+        
+        <td rowspan=1><center><a href="./HTML/run_51/results.html"> 0.01417 <font face=symbol>&#177;</font> 0.00012 </a>  </center></td>
+        <td rowspan=1><center> 10000<center></td><td> parton noshower </td>
+        <td>  <a  id='run_51_tag_1_parton_LHE' href='./Events/run_51/events.lhe.gz' onClick="check_link('./Events/run_51/events.lhe.gz','./Events/run_51/events.lhe','run_51_tag_1_parton_LHE')">LHE</a> <a href="./Events/run_51/summary.txt">summary</a></td>
+        <td> <INPUT TYPE=SUBMIT VALUE='remove run' onClick="alert('Launch ./bin/aMCatNLO in a shell, and run the following command: remove run_51 parton --tag=tag_1')"></td>
+        </tr>
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_52</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_53</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_54</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=1>run_55</td> 
+        <td rowspan=1><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        <td rowspan=1> <a href="./Events/run_55/run_55_tag_1_banner.txt">tag_1</a></td>
+        
+        <td rowspan=1><center><a href="./HTML/run_55/results.html"> 0.01427 <font face=symbol>&#177;</font> 0.00013 </a>  </center></td>
+        <td rowspan=1><center> 10000<center></td><td> parton noshower </td>
+        <td>  <a  id='run_55_tag_1_parton_LHE' href='./Events/run_55/events.lhe.gz' onClick="check_link('./Events/run_55/events.lhe.gz','./Events/run_55/events.lhe','run_55_tag_1_parton_LHE')">LHE</a> <a href="./Events/run_55/summary.txt">summary</a></td>
+        <td> <INPUT TYPE=SUBMIT VALUE='remove run' onClick="alert('Launch ./bin/aMCatNLO in a shell, and run the following command: remove run_55 parton --tag=tag_1')"></td>
+        </tr>
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_56</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=1>run_57</td> 
+        <td rowspan=1><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        <td rowspan=1> <a href="./Events/run_57/run_57_tag_1_banner.txt">tag_1</a></td>
+        
+        <td rowspan=1><center><a href="./HTML/run_57/results.html"> 3.211 <font face=symbol>&#177;</font> 0.0053 </a>  </center></td>
+        <td rowspan=1><center> 10000<center></td><td> parton noshower </td>
+        <td>  <a  id='run_57_tag_1_parton_LHE' href='./Events/run_57/events.lhe.gz' onClick="check_link('./Events/run_57/events.lhe.gz','./Events/run_57/events.lhe','run_57_tag_1_parton_LHE')">LHE</a> <a href="./Events/run_57/summary.txt">summary</a></td>
+        <td> <INPUT TYPE=SUBMIT VALUE='remove run' onClick="alert('Launch ./bin/aMCatNLO in a shell, and run the following command: remove run_57 parton --tag=tag_1')"></td>
+        </tr>
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_58</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=1>run_59</td> 
+        <td rowspan=1><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        <td rowspan=1> <a href="./Events/run_59/run_59_tag_1_banner.txt">tag_1</a></td>
+        
+        <td rowspan=1><center><a href="./HTML/run_59/results.html"> 3.223 <font face=symbol>&#177;</font> 0.0051 </a>  </center></td>
+        <td rowspan=1><center> 10000<center></td><td> parton noshower </td>
+        <td>  <a  id='run_59_tag_1_parton_LHE' href='./Events/run_59/events.lhe.gz' onClick="check_link('./Events/run_59/events.lhe.gz','./Events/run_59/events.lhe','run_59_tag_1_parton_LHE')">LHE</a> <a href="./Events/run_59/summary.txt">summary</a></td>
+        <td> <INPUT TYPE=SUBMIT VALUE='remove run' onClick="alert('Launch ./bin/aMCatNLO in a shell, and run the following command: remove run_59 parton --tag=tag_1')"></td>
+        </tr>
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_60</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_61</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=1>run_62</td> 
+        <td rowspan=1><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        <td rowspan=1> <a href="./Events/run_62/run_62_tag_1_banner.txt">tag_1</a></td>
+        
+        <td rowspan=1><center><a href="./HTML/run_62/results.html"> 3.218 <font face=symbol>&#177;</font> 0.0052 </a>  </center></td>
+        <td rowspan=1><center> 10000<center></td><td> parton noshower </td>
+        <td>  <a  id='run_62_tag_1_parton_LHE' href='./Events/run_62/events.lhe.gz' onClick="check_link('./Events/run_62/events.lhe.gz','./Events/run_62/events.lhe','run_62_tag_1_parton_LHE')">LHE</a> <a href="./Events/run_62/summary.txt">summary</a></td>
+        <td> <INPUT TYPE=SUBMIT VALUE='remove run' onClick="alert('Launch ./bin/aMCatNLO in a shell, and run the following command: remove run_62 parton --tag=tag_1')"></td>
+        </tr>
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_63</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_64</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_65</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_66</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=1>run_67</td> 
+        <td rowspan=1><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        <td rowspan=1> <a href="./Events/run_67/run_67_tag_1_banner.txt">tag_1</a></td>
+        
+        <td rowspan=1><center><a href="./HTML/run_67/results.html"> 3.218 <font face=symbol>&#177;</font> 0.0054 </a>  </center></td>
+        <td rowspan=1><center> 10000<center></td><td> parton noshower </td>
+        <td>  <a  id='run_67_tag_1_parton_LHE' href='./Events/run_67/events.lhe.gz' onClick="check_link('./Events/run_67/events.lhe.gz','./Events/run_67/events.lhe','run_67_tag_1_parton_LHE')">LHE</a> <a href="./Events/run_67/summary.txt">summary</a></td>
+        <td> <INPUT TYPE=SUBMIT VALUE='remove run' onClick="alert('Launch ./bin/aMCatNLO in a shell, and run the following command: remove run_67 parton --tag=tag_1')"></td>
+        </tr>
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_68</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_69</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_70</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_71</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=1>run_72</td> 
+        <td rowspan=1><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        <td rowspan=1> <a href="./Events/run_72/run_72_tag_1_banner.txt">tag_1</a></td>
+        
+        <td rowspan=1><center><a href="./HTML/run_72/results.html"> 3.229 <font face=symbol>&#177;</font> 0.0052 </a>  </center></td>
+        <td rowspan=1><center> 10000<center></td><td> parton noshower </td>
+        <td>  <a  id='run_72_tag_1_parton_LHE' href='./Events/run_72/events.lhe.gz' onClick="check_link('./Events/run_72/events.lhe.gz','./Events/run_72/events.lhe','run_72_tag_1_parton_LHE')">LHE</a> <a href="./Events/run_72/summary.txt">summary</a></td>
+        <td> <INPUT TYPE=SUBMIT VALUE='remove run' onClick="alert('Launch ./bin/aMCatNLO in a shell, and run the following command: remove run_72 parton --tag=tag_1')"></td>
+        </tr>
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_73</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_74</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_75</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_76</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_77</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_78</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=1>run_79</td> 
+        <td rowspan=1><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        <td rowspan=1> <a href="./Events/run_79/run_79_tag_1_banner.txt">tag_1</a></td>
+        
+        <td rowspan=1><center><a href="./HTML/run_79/results.html"> 3.221 <font face=symbol>&#177;</font> 0.0055 </a>  </center></td>
+        <td rowspan=1><center> 10000<center></td><td> parton noshower </td>
+        <td>  <a  id='run_79_tag_1_parton_LHE' href='./Events/run_79/events.lhe.gz' onClick="check_link('./Events/run_79/events.lhe.gz','./Events/run_79/events.lhe','run_79_tag_1_parton_LHE')">LHE</a> <a href="./Events/run_79/summary.txt">summary</a></td>
+        <td> <INPUT TYPE=SUBMIT VALUE='remove run' onClick="alert('Launch ./bin/aMCatNLO in a shell, and run the following command: remove run_79 parton --tag=tag_1')"></td>
+        </tr>
+        </tr>
+        
+        <tr>
+        <td rowspan=1>run_80</td> 
+        <td rowspan=1><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        <td rowspan=1> <a href="./Events/run_80/run_80_tag_1_banner.txt">tag_1</a></td>
+        
+        <td rowspan=1><center><a href="./HTML/run_80/results.html"> 3.217 <font face=symbol>&#177;</font> 0.0053 </a>  </center></td>
+        <td rowspan=1><center> 10000<center></td><td> parton noshower </td>
+        <td>  <a  id='run_80_tag_1_parton_LHE' href='./Events/run_80/events.lhe.gz' onClick="check_link('./Events/run_80/events.lhe.gz','./Events/run_80/events.lhe','run_80_tag_1_parton_LHE')">LHE</a> <a href="./Events/run_80/summary.txt">summary</a></td>
+        <td> <INPUT TYPE=SUBMIT VALUE='remove run' onClick="alert('Launch ./bin/aMCatNLO in a shell, and run the following command: remove run_80 parton --tag=tag_1')"></td>
+        </tr>
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_81</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_82</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_83</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_84</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_85</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_86</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_87</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_88</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_89</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_90</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_91</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_92</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_93</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_94</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_95</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_96</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_97</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_98</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_99</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_100</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_101</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_102</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_103</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_104</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_105</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_106</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_107</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_108</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=1>run_109</td> 
+        <td rowspan=1><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        <td rowspan=1> <a href="./Events/run_109/run_109_tag_1_banner.txt">tag_1</a></td>
+        
+        <td rowspan=1><center><a href="./HTML/run_109/results.html"> 3.218 <font face=symbol>&#177;</font> 0.0056 </a>  </center></td>
+        <td rowspan=1><center> 10000<center></td><td> parton noshower </td>
+        <td>  <a  id='run_109_tag_1_parton_LHE' href='./Events/run_109/events.lhe.gz' onClick="check_link('./Events/run_109/events.lhe.gz','./Events/run_109/events.lhe','run_109_tag_1_parton_LHE')">LHE</a> <a href="./Events/run_109/summary.txt">summary</a></td>
+        <td> <INPUT TYPE=SUBMIT VALUE='remove run' onClick="alert('Launch ./bin/aMCatNLO in a shell, and run the following command: remove run_109 parton --tag=tag_1')"></td>
+        </tr>
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_110</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_111</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=1>run_112</td> 
+        <td rowspan=1><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        <td rowspan=1> <a href="./Events/run_112/run_112_tag_1_banner.txt">tag_1</a></td>
+        
+        <td rowspan=1><center><a href="./HTML/run_112/results.html"> 3.217 <font face=symbol>&#177;</font> 0.0054 </a>  </center></td>
+        <td rowspan=1><center> 10000<center></td><td> parton noshower </td>
+        <td>  <a  id='run_112_tag_1_parton_LHE' href='./Events/run_112/events.lhe.gz' onClick="check_link('./Events/run_112/events.lhe.gz','./Events/run_112/events.lhe','run_112_tag_1_parton_LHE')">LHE</a> <a href="./Events/run_112/summary.txt">summary</a></td>
+        <td> <INPUT TYPE=SUBMIT VALUE='remove run' onClick="alert('Launch ./bin/aMCatNLO in a shell, and run the following command: remove run_112 parton --tag=tag_1')"></td>
+        </tr>
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_113</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_114</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_115</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_116</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_117</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_118</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_119</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_120</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_121</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_122</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_123</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_124</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=1>run_125</td> 
+        <td rowspan=1><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        <td rowspan=1> <a href="./Events/run_125/run_125_tag_1_banner.txt">tag_1</a></td>
+        
+        <td rowspan=1><center><a href="./HTML/run_125/results.html"> 3.208 <font face=symbol>&#177;</font> 0.0056 </a>  </center></td>
+        <td rowspan=1><center> 10000<center></td><td> parton noshower </td>
+        <td>  <a  id='run_125_tag_1_parton_LHE' href='./Events/run_125/events.lhe.gz' onClick="check_link('./Events/run_125/events.lhe.gz','./Events/run_125/events.lhe','run_125_tag_1_parton_LHE')">LHE</a> <a href="./Events/run_125/summary.txt">summary</a></td>
+        <td> <INPUT TYPE=SUBMIT VALUE='remove run' onClick="alert('Launch ./bin/aMCatNLO in a shell, and run the following command: remove run_125 parton --tag=tag_1')"></td>
+        </tr>
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_126</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=1>run_127</td> 
+        <td rowspan=1><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        <td rowspan=1> <a href="./Events/run_127/run_127_tag_1_banner.txt">tag_1</a></td>
+        
+        <td rowspan=1><center><a href="./HTML/run_127/results.html"> 3.208 <font face=symbol>&#177;</font> 0.0055 </a>  </center></td>
+        <td rowspan=1><center> 10000<center></td><td> parton noshower </td>
+        <td>  <a  id='run_127_tag_1_parton_LHE' href='./Events/run_127/events.lhe.gz' onClick="check_link('./Events/run_127/events.lhe.gz','./Events/run_127/events.lhe','run_127_tag_1_parton_LHE')">LHE</a> <a href="./Events/run_127/summary.txt">summary</a></td>
+        <td> <INPUT TYPE=SUBMIT VALUE='remove run' onClick="alert('Launch ./bin/aMCatNLO in a shell, and run the following command: remove run_127 parton --tag=tag_1')"></td>
+        </tr>
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_128</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_129</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_130</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=1>run_134</td> 
+        <td rowspan=1><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        <td rowspan=1> <a href="./Events/run_134/run_134_tag_1_banner.txt">tag_1</a></td>
+        
+        <td rowspan=1><center><a href="./HTML/run_134/results.html"> 3.217 <font face=symbol>&#177;</font> 0.0052 </a>  </center></td>
+        <td rowspan=1><center> 10000<center></td><td> parton noshower </td>
+        <td>  <a  id='run_134_tag_1_parton_LHE' href='./Events/run_134/events.lhe.gz' onClick="check_link('./Events/run_134/events.lhe.gz','./Events/run_134/events.lhe','run_134_tag_1_parton_LHE')">LHE</a> <a href="./Events/run_134/summary.txt">summary</a></td>
+        <td> <INPUT TYPE=SUBMIT VALUE='remove run' onClick="alert('Launch ./bin/aMCatNLO in a shell, and run the following command: remove run_134 parton --tag=tag_1')"></td>
+        </tr>
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_140</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_143</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=1>run_151</td> 
+        <td rowspan=1><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        <td rowspan=1> <a href="./Events/run_151/run_151_tag_1_banner.txt">tag_1</a></td>
+        
+        <td rowspan=1><center><a href="./HTML/run_151/results.html"> 2.991 <font face=symbol>&#177;</font> 0.0057 </a>  </center></td>
+        <td rowspan=1><center> 10000<center></td><td> parton noshower </td>
+        <td>  <a  id='run_151_tag_1_parton_LHE' href='./Events/run_151/events.lhe.gz' onClick="check_link('./Events/run_151/events.lhe.gz','./Events/run_151/events.lhe','run_151_tag_1_parton_LHE')">LHE</a> <a href="./Events/run_151/summary.txt">summary</a></td>
+        <td> <INPUT TYPE=SUBMIT VALUE='remove run' onClick="alert('Launch ./bin/aMCatNLO in a shell, and run the following command: remove run_151 parton --tag=tag_1')"></td>
+        </tr>
+        </tr>
+        
+        <tr>
+        <td rowspan=1>run_155</td> 
+        <td rowspan=1><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        <td rowspan=1> <a href="./Events/run_155/run_155_tag_1_banner.txt">tag_1</a></td>
+        
+        <td rowspan=1><center><a href="./HTML/run_155/results.html"> 2.995 <font face=symbol>&#177;</font> 0.0054 </a>  </center></td>
+        <td rowspan=1><center> 10000<center></td><td> parton noshower </td>
+        <td>  <a  id='run_155_tag_1_parton_LHE' href='./Events/run_155/events.lhe.gz' onClick="check_link('./Events/run_155/events.lhe.gz','./Events/run_155/events.lhe','run_155_tag_1_parton_LHE')">LHE</a> <a href="./Events/run_155/summary.txt">summary</a></td>
+        <td> <INPUT TYPE=SUBMIT VALUE='remove run' onClick="alert('Launch ./bin/aMCatNLO in a shell, and run the following command: remove run_155 parton --tag=tag_1')"></td>
+        </tr>
+        </tr>
+        
+        <tr>
+        <td rowspan=1>run_161</td> 
+        <td rowspan=1><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        <td rowspan=1> <a href="./Events/run_161/run_161_tag_1_banner.txt">tag_1</a></td>
+        
+        <td rowspan=1><center><a href="./HTML/run_161/results.html"> 2.986 <font face=symbol>&#177;</font> 0.0055 </a>  </center></td>
+        <td rowspan=1><center> 10000<center></td><td> parton noshower </td>
+        <td>  <a  id='run_161_tag_1_parton_LHE' href='./Events/run_161/events.lhe.gz' onClick="check_link('./Events/run_161/events.lhe.gz','./Events/run_161/events.lhe','run_161_tag_1_parton_LHE')">LHE</a> <a href="./Events/run_161/summary.txt">summary</a></td>
+        <td> <INPUT TYPE=SUBMIT VALUE='remove run' onClick="alert('Launch ./bin/aMCatNLO in a shell, and run the following command: remove run_161 parton --tag=tag_1')"></td>
+        </tr>
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_166</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=1>run_169</td> 
+        <td rowspan=1><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        <td rowspan=1> <a href="./Events/run_169/run_169_tag_1_banner.txt">tag_1</a></td>
+        
+        <td rowspan=1><center><a href="./HTML/run_169/results.html"> 2.993 <font face=symbol>&#177;</font> 0.0055 </a>  </center></td>
+        <td rowspan=1><center> 10000<center></td><td> parton noshower </td>
+        <td>  <a  id='run_169_tag_1_parton_LHE' href='./Events/run_169/events.lhe.gz' onClick="check_link('./Events/run_169/events.lhe.gz','./Events/run_169/events.lhe','run_169_tag_1_parton_LHE')">LHE</a> <a href="./Events/run_169/summary.txt">summary</a></td>
+        <td> <INPUT TYPE=SUBMIT VALUE='remove run' onClick="alert('Launch ./bin/aMCatNLO in a shell, and run the following command: remove run_169 parton --tag=tag_1')"></td>
+        </tr>
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_171</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_179</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=1>run_184</td> 
+        <td rowspan=1><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        <td rowspan=1> <a href="./Events/run_184/run_184_tag_1_banner.txt">tag_1</a></td>
+        
+        <td rowspan=1><center><a href="./HTML/run_184/results.html"> 2.989 <font face=symbol>&#177;</font> 0.0058 </a>  </center></td>
+        <td rowspan=1><center> 10000<center></td><td> parton noshower </td>
+        <td>  <a  id='run_184_tag_1_parton_LHE' href='./Events/run_184/events.lhe.gz' onClick="check_link('./Events/run_184/events.lhe.gz','./Events/run_184/events.lhe','run_184_tag_1_parton_LHE')">LHE</a> <a href="./Events/run_184/summary.txt">summary</a></td>
+        <td> <INPUT TYPE=SUBMIT VALUE='remove run' onClick="alert('Launch ./bin/aMCatNLO in a shell, and run the following command: remove run_184 parton --tag=tag_1')"></td>
+        </tr>
+        </tr>
+        
+        <tr>
+        <td rowspan=1>run_186</td> 
+        <td rowspan=1><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        <td rowspan=1> <a href="./Events/run_186/run_186_tag_1_banner.txt">tag_1</a></td>
+        
+        <td rowspan=1><center><a href="./HTML/run_186/results.html"> 2.993 <font face=symbol>&#177;</font> 0.0053 </a>  </center></td>
+        <td rowspan=1><center> 10000<center></td><td> parton noshower </td>
+        <td>  <a  id='run_186_tag_1_parton_LHE' href='./Events/run_186/events.lhe.gz' onClick="check_link('./Events/run_186/events.lhe.gz','./Events/run_186/events.lhe','run_186_tag_1_parton_LHE')">LHE</a> <a href="./Events/run_186/summary.txt">summary</a></td>
+        <td> <INPUT TYPE=SUBMIT VALUE='remove run' onClick="alert('Launch ./bin/aMCatNLO in a shell, and run the following command: remove run_186 parton --tag=tag_1')"></td>
+        </tr>
+        </tr>
+        
+        <tr>
+        <td rowspan=1>run_194</td> 
+        <td rowspan=1><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        <td rowspan=1> <a href="./Events/run_194/run_194_tag_1_banner.txt">tag_1</a></td>
+        
+        <td rowspan=1><center><a href="./HTML/run_194/results.html"> 2.997 <font face=symbol>&#177;</font> 0.0053 </a>  </center></td>
+        <td rowspan=1><center> 10000<center></td><td> parton noshower </td>
+        <td>  <a  id='run_194_tag_1_parton_LHE' href='./Events/run_194/events.lhe.gz' onClick="check_link('./Events/run_194/events.lhe.gz','./Events/run_194/events.lhe','run_194_tag_1_parton_LHE')">LHE</a> <a href="./Events/run_194/summary.txt">summary</a></td>
+        <td> <INPUT TYPE=SUBMIT VALUE='remove run' onClick="alert('Launch ./bin/aMCatNLO in a shell, and run the following command: remove run_194 parton --tag=tag_1')"></td>
+        </tr>
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_197</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=1>run_203</td> 
+        <td rowspan=1><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        <td rowspan=1> <a href="./Events/run_203/run_203_tag_1_banner.txt">tag_1</a></td>
+        
+        <td rowspan=1><center><a href="./HTML/run_203/results.html"> 2.995 <font face=symbol>&#177;</font> 0.0056 </a>  </center></td>
+        <td rowspan=1><center> 10000<center></td><td> parton noshower </td>
+        <td>  <a  id='run_203_tag_1_parton_LHE' href='./Events/run_203/events.lhe.gz' onClick="check_link('./Events/run_203/events.lhe.gz','./Events/run_203/events.lhe','run_203_tag_1_parton_LHE')">LHE</a> <a href="./Events/run_203/summary.txt">summary</a></td>
+        <td> <INPUT TYPE=SUBMIT VALUE='remove run' onClick="alert('Launch ./bin/aMCatNLO in a shell, and run the following command: remove run_203 parton --tag=tag_1')"></td>
+        </tr>
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_205</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_208</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=0>run_216</td> 
+        <td rowspan=0><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        </tr>
+        
+        <tr>
+        <td rowspan=1>run_219</td> 
+        <td rowspan=1><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        <td rowspan=1> <a href="./Events/run_219/run_219_tag_1_banner.txt">tag_1</a></td>
+        
+        <td rowspan=1><center><a href="./HTML/run_219/results.html"> 2.994 <font face=symbol>&#177;</font> 0.0053 </a>  </center></td>
+        <td rowspan=1><center> 10000<center></td><td> parton noshower </td>
+        <td>  <a  id='run_219_tag_1_parton_LHE' href='./Events/run_219/events.lhe.gz' onClick="check_link('./Events/run_219/events.lhe.gz','./Events/run_219/events.lhe','run_219_tag_1_parton_LHE')">LHE</a> <a href="./Events/run_219/summary.txt">summary</a></td>
+        <td> <INPUT TYPE=SUBMIT VALUE='remove run' onClick="alert('Launch ./bin/aMCatNLO in a shell, and run the following command: remove run_219 parton --tag=tag_1')"></td>
+        </tr>
+        </tr>
+        
+        <tr>
+        <td rowspan=1>run_223</td> 
+        <td rowspan=1><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        <td rowspan=1> <a href="./Events/run_223/run_223_tag_1_banner.txt">tag_1</a></td>
+        
+        <td rowspan=1><center><a href="./HTML/run_223/results.html"> 2.992 <font face=symbol>&#177;</font> 0.0058 </a>  </center></td>
+        <td rowspan=1><center> 10000<center></td><td> parton noshower </td>
+        <td>  <a  id='run_223_tag_1_parton_LHE' href='./Events/run_223/events.lhe.gz' onClick="check_link('./Events/run_223/events.lhe.gz','./Events/run_223/events.lhe','run_223_tag_1_parton_LHE')">LHE</a> <a href="./Events/run_223/summary.txt">summary</a></td>
+        <td> <INPUT TYPE=SUBMIT VALUE='remove run' onClick="alert('Launch ./bin/aMCatNLO in a shell, and run the following command: remove run_223 parton --tag=tag_1')"></td>
+        </tr>
+        </tr>
+        
+        <tr>
+        <td rowspan=1>run_229</td> 
+        <td rowspan=1><center>  p  p <br> 6500.0 x 6500.0  GeV </center></td>
+        
+        <td rowspan=1> <a href="./Events/run_229/run_229_tag_1_banner.txt">tag_1</a></td>
+        
+        <td rowspan=1><center><a href="./HTML/run_229/results.html"> 2.999 <font face=symbol>&#177;</font> 0.0055 </a>  </center></td>
+        <td rowspan=1><center> 10000<center></td><td> parton noshower </td>
+        <td>  <a  id='run_229_tag_1_parton_LHE' href='./Events/run_229/events.lhe.gz' onClick="check_link('./Events/run_229/events.lhe.gz','./Events/run_229/events.lhe','run_229_tag_1_parton_LHE')">LHE</a> <a href="./Events/run_229/summary.txt">summary</a></td>
+        <td> <INPUT TYPE=SUBMIT VALUE='remove run' onClick="alert('Launch ./bin/aMCatNLO in a shell, and run the following command: remove run_229 parton --tag=tag_1')"></td>
+        </tr>
+        </tr>
+        
+        </TABLE>
+    <H3 align=center><A HREF="./index.html"> Main Page </A></H3>
+</BODY> 
+</HTML> 

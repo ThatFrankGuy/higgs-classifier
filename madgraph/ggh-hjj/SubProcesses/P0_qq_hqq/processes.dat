@@ -1,0 +1,14 @@
+1       u u > h u u,c c > h c c,d d > h d d,s s > h s s
+mirror  none
+2       u u~ > h u u~,c c~ > h c c~,d d~ > h d d~,s s~ > h s s~
+mirror  u~ u > h u u~,c~ c > h c c~,d~ d > h d d~,s~ s > h s s~
+3       u~ u~ > h u~ u~,c~ c~ > h c~ c~,d~ d~ > h d~ d~,s~ s~ > h s~ s~
+mirror  none
+4       u c > h u c,u d > h u d,u s > h u s,c d > h c d,c s > h c s,d s > h d s
+mirror  c u > h u c,d u > h u d,s u > h u s,d c > h c d,s c > h c s,s d > h d s
+5       u u~ > h c c~,u u~ > h d d~,u u~ > h s s~,c c~ > h u u~,c c~ > h d d~,c c~ > h s s~,d d~ > h u u~,d d~ > h c c~,d d~ > h s s~,s s~ > h u u~,s s~ > h c c~,s s~ > h d d~
+mirror  u~ u > h c c~,u~ u > h d d~,u~ u > h s s~,c~ c > h u u~,c~ c > h d d~,c~ c > h s s~,d~ d > h u u~,d~ d > h c c~,d~ d > h s s~,s~ s > h u u~,s~ s > h c c~,s~ s > h d d~
+6       u c~ > h u c~,u d~ > h u d~,u s~ > h u s~,c u~ > h c u~,c d~ > h c d~,c s~ > h c s~,d u~ > h d u~,d c~ > h d c~,d s~ > h d s~,s u~ > h s u~,s c~ > h s c~,s d~ > h s d~
+mirror  c~ u > h u c~,d~ u > h u d~,s~ u > h u s~,u~ c > h c u~,d~ c > h c d~,s~ c > h c s~,u~ d > h d u~,c~ d > h d c~,s~ d > h d s~,u~ s > h s u~,c~ s > h s c~,d~ s > h s d~
+7       u~ c~ > h u~ c~,u~ d~ > h u~ d~,u~ s~ > h u~ s~,c~ d~ > h c~ d~,c~ s~ > h c~ s~,d~ s~ > h d~ s~
+mirror  c~ u~ > h u~ c~,d~ u~ > h u~ d~,s~ u~ > h u~ s~,d~ c~ > h c~ d~,s~ c~ > h c~ s~,s~ d~ > h d~ s~
