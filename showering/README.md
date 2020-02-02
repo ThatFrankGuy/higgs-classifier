@@ -10,6 +10,8 @@ fastjet-contrib's ConstituentSubstractor doesn't work on Cori, and needed to be 
 Before compiling, run `source setup-cori.sh` to setup library path (you need to change all paths to your own installation), `make clean` and `make`. 
 The compiled file will be called `./myexample.exe`.
 
+Before you run, please check setup-cori.sh to modify pythia and fastjet path. Then source it. 
+
 To run: 
 ./myexample.exe signal.cmnd (LOCATION TO STORE EVENTS) (LHE OUTPUT FROM MG5)
 

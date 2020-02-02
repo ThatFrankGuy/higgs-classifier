@@ -180,7 +180,7 @@ int main( int argc, char* argv[] ){
       xs += pythia.info.sigmaLHEF(i);
 
     int iev = 0;
-    float isYes = 0;
+    float trimmedJetMass = 0;
     int numYes = 0;
     int numTotal = 0;
 
@@ -197,10 +197,10 @@ int main( int argc, char* argv[] ){
       //  else continue;
       //}
 
-      isYes = analysis1->AnalyzeEvent(iev, &pythia);
+      trimmedJetMass = analysis1->AnalyzeEvent(iev, &pythia);
 
       numTotal++;
-      if (isYes == -10) {
+      if (trimmedJetMass == -10) {
       		if (pythia.info.atEndOfFile()) break;
           if (pythia.info.nSelected() == 0){
              cout << "File does not exist!" << endl;
@@ -209,7 +209,7 @@ int main( int argc, char* argv[] ){
           cout << pythia.info.nSelected() << endl;
 		continue;
       }
-      if (isYes > 50){
+      if (trimmedJetMass > 50){
       //cout << "writing" << endl;
                     for (unsigned int ip = 0; ip < pythia.event.size(); ip++){
                            if (!pythia.event[ip].isFinal()) continue;
@@ -236,7 +236,7 @@ int main( int argc, char* argv[] ){
                            myfile << "\n";
 
                    }
-                   myfile << isYes << ".\n";
+                   myfile << trimmedJetMass << ".\n";
                    myfile << "\n";	
 		   numYes++;
 	}
