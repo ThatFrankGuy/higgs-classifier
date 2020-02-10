@@ -61,7 +61,7 @@ void myexampleAnalysis::End(){
 	return;
 }
 
-fastjet::ClusterSequence *cs; 
+fastjet::ClusterSequence *largeRClusterSequence; 
 std::vector<fastjet::PseudoJet> *particlesForJets; 
 fastjet::PseudoJet *p; 
 std::vector <fastjet::PseudoJet> *myJets; 
@@ -86,7 +86,7 @@ int failed = 0;
 fastjet::Recluster recluster_ca_inf = fastjet::Recluster(fastjet::antikt_algorithm, 0.2, fastjet::Recluster::keep_all);
 
 void destroy(){
-	delete cs;
+	delete largeRClusterSequence;
 	delete myJets;
 	delete particlesForJets;
 	delete bhadrons;
@@ -130,7 +130,12 @@ float myexampleAnalysis::AnalyzeEvent(int ievt, Pythia8::Pythia* pythia8){
 		if ((idmod >= 500 && idmod < 600) || (idmod >= 5000 && idmod < 6000)){
 			(*bhadrons).push_back(*p);
 		}
-		
+
+		// Checking decay
+		if (pythia8->event[ip].idAbs() == 23 || pythia8->event[ip].idAbs() == 24 || pythia8->event[ip].idAbs() == 25){
+ 		//print PDG ID of two dauguers
+			cout << pythia8->event[ip].id()  <<" decays into "<< pythia8->event[ pythia8->event[ip].daughter1() ].id() <<" and "<< pythia8->event[ pythia8->event[ip].daughter2() ].id()  <<endl;  
+		}
 		if (!pythia8->event[ip].isFinal())	 continue;
 		if (fabs(pythia8->event[ip].id())==12)	 continue; //Neutrinos
 		if (fabs(pythia8->event[ip].id())==14)	 continue;
@@ -147,24 +152,42 @@ float myexampleAnalysis::AnalyzeEvent(int ievt, Pythia8::Pythia* pythia8){
 	//cout << "Done Particle Loop" << endl;
 
 
-	cs =  new fastjet::ClusterSequence (*particlesForJets, *m_jet_def);
+	largeRClusterSequence =  new fastjet::ClusterSequence (*particlesForJets, *m_jet_def);
 	myJets = new std::vector<fastjet::PseudoJet>;
-	*myJets =  fastjet::sorted_by_pt((*cs).inclusive_jets(0)); 
+	*myJets =  fastjet::sorted_by_pt((*largeRClusterSequence).inclusive_jets(0)); 
 	
 	//if too large pTMiss, then reject the event
-	/*
-	if (pow(pxMiss,2)+pow(pyMiss,2) > pow(140,2)){
-		cout << pxMiss << " " << pyMiss << endl;
-		//cout << "Big pT Miss" << endl;
-		numPTMISS++;
-		return (0);
-	}
-	*/
+	//if (pow(pxMiss,2)+pow(pyMiss,2) > 0){
+	//	cout << "Missing pT detected! " << pow(pow(pxMiss,2)+pow(pyMiss,2),0.5) << endl;
+	//	//cout << "Big pT Miss" << endl;
+	//	numPTMISS++;
+	//	return (0);
+	//}
+
 	
 	pieces = new std::vector<fastjet::PseudoJet>;
 
 	fastjet::contrib::SoftDrop sd(0.0,0.1);
-	trimmedJet = sd((*myJets)[0]);
+
+	//Choosing leading jet with eta > 2
+
+	int leadingCentralJetId = 0;
+
+	for (int iJet = 0; iJet < (*myJets).size(); ++iJet){
+		leadingCentralJetId = iJet;
+		cout << "Jet eta=" << (*myJets)[iJet].eta() << endl;
+		if ((*myJets)[iJet].eta() < 2 && (*myJets)[iJet].eta() > -2){
+			cout << "Leading central jet chosen with eta=" << (*myJets)[iJet].eta() << endl;
+			break;
+		}else if(iJet == (*myJets).size()){
+			cout << "No leading central jet!" << endl;
+			return (0);
+		}
+	
+	}
+	
+
+	trimmedJet = sd((*myJets)[leadingCentralJetId]);
 	*pieces = trimmedJet.pieces();
 	constit = trimmedJet.constituents();
 	cSize = constit.size();
@@ -433,7 +456,7 @@ float myexampleAnalysis::AnalyzeEvent(int ievt, Pythia8::Pythia* pythia8){
 
 
 	/*
-	delete cs;
+	delete largeRClusterSequence;
 	delete myJets;
 	delete particlesForJets;
 	delete bhadrons;
