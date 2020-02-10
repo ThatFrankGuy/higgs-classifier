@@ -35,7 +35,7 @@ for f in ggh-hj/Events/*;
     ls $f
 
     gzip -d $f/events.lhe.gz
-    cp $f/events.lhe $dir/vbf-lhe/$seed.hj.lhe
+    cp $f/events.lhe $dir/ggh-lhe/$seed.hj.lhe
   done
 
 for f in ggh-hjj/Events/*;
@@ -45,5 +45,5 @@ for f in ggh-hjj/Events/*;
     ls $f
 
     gzip -d $f/events.lhe.gz
-    cp $f/events.lhe $dir/vbf-lhe/$seed.hjj.lhe
+    cp $f/events.lhe $dir/ggh-lhe/$seed.hjj.lhe
   done

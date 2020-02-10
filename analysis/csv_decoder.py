@@ -27,6 +27,7 @@ from pyjet.testdata import get_event
 # trimmed mass of identified jet \n
 # \n
 # and produces a event_list
+# [[pt, eta, phi, m, id, isCharged], ...]
 def return_event_list(fileName,max_read = float("inf"),weighted=0,pt_cut=1):
     
     printed = 0
