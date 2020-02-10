@@ -1,0 +1,5 @@
+launch ~/scratch/higgs-classifier/MG5/vh
+set iseed 21585
+set pt_min_pdg {25:450}
+set pt_max_pdg {25:1700}
+set nevents 10

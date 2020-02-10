@@ -1,0 +1,5 @@
+launch /home/ffu/higgs-classifier/madgraph/vh
+set iseed 5259
+set pt_min_pdg {25:450}
+set pt_max_pdg {25:1700}
+set nevents 10

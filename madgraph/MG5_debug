@@ -1,0 +1,54 @@
+#************************************************************
+#*                     MadGraph5_aMC@NLO                    *
+#*                                                          *
+#*                *                       *                 *
+#*                  *        * *        *                   *
+#*                    * * * * 5 * * * *                     *
+#*                  *        * *        *                   *
+#*                *                       *                 *
+#*                                                          *
+#*                                                          *
+#*         VERSION 2.6.7                 2019-10-16         *
+#*                                                          *
+#*    The MadGraph5_aMC@NLO Development Team - Find us at   *
+#*    https://server06.fynu.ucl.ac.be/projects/madgraph     *
+#*                                                          *
+#************************************************************
+#*                                                          *
+#*               Command File for MadGraph5_aMC@NLO         *
+#*                                                          *
+#*     run as ./bin/mg5_aMC  filename                       *
+#*                                                          *
+#************************************************************
+set default_unset_couplings 99
+set group_subprocesses Auto
+set ignore_six_quark_processes False
+set loop_optimized_output True
+set loop_color_flows False
+set gauge unitary
+set complex_mass_scheme False
+set max_npoint_for_channel 0
+launch /home/ffu/higgs-classifier/madgraph/vh
+Traceback (most recent call last):
+  File "/home/ffu/softwares/MG5_aMC_v2_6_7/madgraph/interface/extended_cmd.py", line 1514, in onecmd
+    return self.onecmd_orig(line, **opt)
+  File "/home/ffu/softwares/MG5_aMC_v2_6_7/madgraph/interface/extended_cmd.py", line 1463, in onecmd_orig
+    return func(arg, **opt)
+  File "/home/ffu/softwares/MG5_aMC_v2_6_7/madgraph/interface/master_interface.py", line 278, in do_import
+    self.cmd.do_import(self, *args, **opts)
+  File "/home/ffu/softwares/MG5_aMC_v2_6_7/madgraph/interface/madgraph_interface.py", line 5287, in do_import
+    self.import_command_file(args[1])
+  File "/home/ffu/softwares/MG5_aMC_v2_6_7/madgraph/interface/extended_cmd.py", line 1660, in import_command_file
+    self.exec_cmd(line, precmd=True)
+  File "/home/ffu/softwares/MG5_aMC_v2_6_7/madgraph/interface/extended_cmd.py", line 1543, in exec_cmd
+    stop = Cmd.onecmd_orig(current_interface, line, **opt)
+  File "/home/ffu/softwares/MG5_aMC_v2_6_7/madgraph/interface/extended_cmd.py", line 1463, in onecmd_orig
+    return func(arg, **opt)
+  File "/home/ffu/softwares/MG5_aMC_v2_6_7/madgraph/interface/master_interface.py", line 494, in do_launch
+    return self.cmd.do_launch(self, line, *argss, **opts)
+  File "/home/ffu/softwares/MG5_aMC_v2_6_7/madgraph/interface/amcatnlo_interface.py", line 770, in do_launch
+    self.do_switch('ML5')
+  File "/home/ffu/softwares/MG5_aMC_v2_6_7/madgraph/interface/master_interface.py", line 613, in do_switch
+    %','.join(interface_quick_name.keys()))
+NameError: global name 'interface_quick_name' is not defined
+Fail to write options with error No model currently active, please import a model!

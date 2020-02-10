@@ -1,1 +1,0 @@
-../SubProcesses/P0_qq_hg/nexternal.inc

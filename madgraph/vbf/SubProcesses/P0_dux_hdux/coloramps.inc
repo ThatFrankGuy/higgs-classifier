@@ -1,3 +1,0 @@
-      LOGICAL ICOLAMP(2,2,1)
-      DATA(ICOLAMP(I,1,1),I=1,2)/.TRUE.,.FALSE./
-      DATA(ICOLAMP(I,2,1),I=1,2)/.FALSE.,.TRUE./

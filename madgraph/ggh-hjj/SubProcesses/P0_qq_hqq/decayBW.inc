@@ -1,2 +1,0 @@
-      DATA GFORCEBW(-1,3)/0/
-      DATA GFORCEBW(-2,3)/0/

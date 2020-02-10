@@ -1,4 +1,0 @@
-gfortran -lstdc++  /global/cscratch1/sd/frankfu/higgs-classifier/MG5/vbf/MCatNLO/objects/herwig6521.o /global/cscratch1/sd/frankfu/higgs-classifier/MG5/vbf/MCatNLO/objects/madfks_hwdriver.o /global/cscratch1/sd/frankfu/higgs-classifier/MG5/vbf/MCatNLO/objects/madfks_hwlhin.o /global/cscratch1/sd/frankfu/higgs-classifier/MG5/vbf/MCatNLO/objects/mcatnlo_str.o /global/cscratch1/sd/frankfu/higgs-classifier/MG5/vbf/MCatNLO/objects/mcatnlo_hwan_stdhep.o /global/cscratch1/sd/frankfu/higgs-classifier/MG5/vbf/MCatNLO/objects/jimmy.o /global/cscratch1/sd/frankfu/higgs-classifier/MG5/vbf/MCatNLO/objects/mcatnlo_pdftomlm.o /global/cscratch1/sd/frankfu/higgs-classifier/MG5/vbf/MCatNLO/objects/mcatnlo_libofpdf.o /global/cscratch1/sd/frankfu/higgs-classifier/MG5/vbf/MCatNLO/objects/dummies.o -L../lib -lstdhep -lFmcfio -o HW_EXE_DEFAULT
- 
-*****   Now ready for showering 10000 events with HERWIG6 
- 
