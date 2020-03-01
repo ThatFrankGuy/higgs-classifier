@@ -220,10 +220,6 @@ int main(int argc, char* argv[]) {
 					myfile << ",";
 					myfile << pythia.event[ip].id();
 					myfile << ",";
-					myfile << pythia.event[ip].daughter1();
-					myfile << ",";
-					myfile << pythia.event[ip].daughter2();
-					myfile << ",";
 					if (pythia.event[ip].isCharged()) {
 						myfile << "1";
 					} else {
