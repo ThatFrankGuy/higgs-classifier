@@ -206,7 +206,7 @@ def recluster_event(cluster_list):
         reclustered_list.append(jets_Cluster)
     return(reclustered_list)
 
-def return_fine_image_list_reclustered(event_list, event_list_clustered, radius, which_jet = 0,verbose = False, width=40, height=40):
+def return_fine_image_list_reclustered(event_list, event_list_reclustered, radius, which_jet = 0,verbose = False, width=40, height=40):
     image_list = []
     image_0 = np.zeros((width,height)) #Neutral pt
     image_1 = np.zeros((width,height)) #Charged pt
@@ -214,15 +214,18 @@ def return_fine_image_list_reclustered(event_list, event_list_clustered, radius,
     
     no_two = 0
 
+    x_hat = np.array([1,0]) 
+    y_hat = np.array([0,1])
+
     for z in range(len(event_list)):
         image_0 = np.zeros((width,height))
         image_1 = np.zeros((width,height))
         image_2 = np.zeros((width,height))
         
-        if (len(event_list_clustered[z]) > 1):
-            #First, let's find the direction of the second-hardest jet relative to the first-hardest subjet
-            phi_dir = -(dphi(event_list_clustered[z][1].phi,event_list_clustered[z][0].phi))
-            eta_dir = -(event_list_clustered[z][1].eta - event_list_clustered[z][0].eta)
+        if (len(event_list_reclustered[z]) > 1):
+            #First, let's find the direction of the second-hardest jet relative to the first-hardest jet
+            phi_dir = -(dphi(event_list_reclustered[z][1].phi,event_list_reclustered[z][0].phi))
+            eta_dir = -(event_list_reclustered[z][1].eta - event_list_reclustered[z][0].eta)
             #Norm difference:
             norm_dir = np.linalg.norm([phi_dir,eta_dir])
             #This is now the y-hat direction. so we can actually find the unit vector:
@@ -238,14 +241,14 @@ def return_fine_image_list_reclustered(event_list, event_list_clustered, radius,
             
         
         for x in range(len(event_list[z])):
-            if (len(event_list_clustered[z]) == 1):
+            if (len(event_list_reclustered[z]) == 1):
                 #In the case that the reclustering only found one hard jet (that seems kind of bad, but hey)
                 #no_two = no_two+1
-                new_coord = [dphi(event_list[z][x,2],event_list_clustered[z][0].phi),event_list[z][x,1]-event_list_clustered[z][0].eta]
+                new_coord = [dphi(event_list[z][x,2],event_list_reclustered[z][0].phi),event_list[z][x,1]-event_list_reclustered[z][0].eta]
                 indxs = [math.floor(width*new_coord[0]/(radius*1.5))+width//2,math.floor(height*(new_coord[1])/(radius*1.5))+height//2]
             else:
                 #Now, we want to express an incoming particle in this new basis:
-                part_coord = [dphi(event_list[z][x,2],event_list_clustered[z][0].phi),event_list[z][x,1]-event_list_clustered[z][0].eta]
+                part_coord = [dphi(event_list[z][x,2],event_list_reclustered[z][0].phi),event_list[z][x,1]-event_list_reclustered[z][0].eta]
                 new_coord = np.dot(np.array([x_hat,y_hat]),part_coord)
                 #Now, we want to cast these new coordinates into our array
                 indxs = [math.floor(width*new_coord[0]/(radius*1.5))+width//2,math.floor(height*(new_coord[1]+norm_dir/1.5)/(radius*1.5))+height//2]
