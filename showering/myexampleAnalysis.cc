@@ -64,7 +64,7 @@ void myexampleAnalysis::End(){
 fastjet::ClusterSequence *largeRClusterSequence; 
 std::vector<fastjet::PseudoJet> *particlesForJets; 
 fastjet::PseudoJet *p; 
-std::vector <fastjet::PseudoJet> *myJets; 
+std::vector <fastjet::PseudoJet> *largeRJets; 
 std::vector <fastjet::PseudoJet> *bhadrons;
 std::vector <fastjet::PseudoJet> *bs;
 std::vector <fastjet::PseudoJet> *pieces;
@@ -87,7 +87,7 @@ fastjet::Recluster recluster_ca_inf = fastjet::Recluster(fastjet::antikt_algorit
 
 void destroy(){
 	delete largeRClusterSequence;
-	delete myJets;
+	delete largeRJets;
 	delete particlesForJets;
 	delete bhadrons;
 	delete bs;
@@ -97,8 +97,10 @@ void destroy(){
 // Analyze
 float myexampleAnalysis::AnalyzeEvent(int ievt, Pythia8::Pythia* pythia8){
 	
-
-	//cout << "call reached" << endl;
+	//cout << endl;
+	//cout << endl;
+	//cout << endl;
+	//cout << "Event analysis started. Event ID " << ievt << endl;
 
 	if (!pythia8->next()){
 		cout << "Failed in Analysis" << endl;
@@ -117,7 +119,7 @@ float myexampleAnalysis::AnalyzeEvent(int ievt, Pythia8::Pythia* pythia8){
 	bhadrons = new std::vector<fastjet::PseudoJet>;
 	bs = new std::vector<fastjet::PseudoJet>;
 
-
+	int ipHiggs=-1;
 	// Particle loop
 	for (unsigned int ip=0; ip<pythia8->event.size(); ip++){
 		p = new fastjet::PseudoJet(pythia8->event[ip].px(), pythia8->event[ip].py(), pythia8->event[ip].pz(),pythia8->event[ip].e());
@@ -134,7 +136,12 @@ float myexampleAnalysis::AnalyzeEvent(int ievt, Pythia8::Pythia* pythia8){
 		// Checking decay
 		if (pythia8->event[ip].idAbs() == 23 || pythia8->event[ip].idAbs() == 24 || pythia8->event[ip].idAbs() == 25){
  		//print PDG ID of two dauguers
-			cout << pythia8->event[ip].id()  <<" decays into "<< pythia8->event[ pythia8->event[ip].daughter1() ].id() <<" and "<< pythia8->event[ pythia8->event[ip].daughter2() ].id()  <<endl;  
+			//cout <<ip <<" "<< pythia8->event[ip].id() <<" status " << pythia8->event[ip].status()  <<" decays into "<< pythia8->event[ pythia8->event[ip].daughter1() ].id() <<" and "<< pythia8->event[ pythia8->event[ip].daughter2() ].id()  <<endl;  
+			if (pythia8->event[ip].idAbs() == 25 && pythia8->event[ pythia8->event[ip].daughter1() ].id() != 25) {
+				ipHiggs=ip;
+				//cout << "Final state higgs found, ip = " << ipHiggs <<endl;
+
+			}
 		}
 		if (!pythia8->event[ip].isFinal())	 continue;
 		if (fabs(pythia8->event[ip].id())==12)	 continue; //Neutrinos
@@ -144,17 +151,17 @@ float myexampleAnalysis::AnalyzeEvent(int ievt, Pythia8::Pythia* pythia8){
 		pxMiss = pxMiss + pythia8->event[ip].px();
 		pyMiss = pyMiss + pythia8->event[ip].py();
 
-		(*particlesForJets).push_back((*p));
-		
+		(*particlesForJets).push_back((*p));		
 		delete p;	
 	} 
-
-	//cout << "Done Particle Loop" << endl;
+	//cout << "Event has " << (*bs).size()<< " b hadrons in total." << endl;
 
 
 	largeRClusterSequence =  new fastjet::ClusterSequence (*particlesForJets, *m_jet_def);
-	myJets = new std::vector<fastjet::PseudoJet>;
-	*myJets =  fastjet::sorted_by_pt((*largeRClusterSequence).inclusive_jets(0)); 
+
+	// Collection of R=0.8 jets
+	largeRJets = new std::vector<fastjet::PseudoJet>;
+	*largeRJets =  fastjet::sorted_by_pt((*largeRClusterSequence).inclusive_jets(0)); 
 	
 	//if too large pTMiss, then reject the event
 	//if (pow(pxMiss,2)+pow(pyMiss,2) > 0){
@@ -169,178 +176,55 @@ float myexampleAnalysis::AnalyzeEvent(int ievt, Pythia8::Pythia* pythia8){
 
 	fastjet::contrib::SoftDrop sd(0.0,0.1);
 
-	//Choosing leading jet with eta > 2
-
 	int leadingCentralJetId = 0;
-
-	for (int iJet = 0; iJet < (*myJets).size(); ++iJet){
-		leadingCentralJetId = iJet;
-		cout << "Jet eta=" << (*myJets)[iJet].eta() << endl;
-		if ((*myJets)[iJet].eta() < 2 && (*myJets)[iJet].eta() > -2){
-			cout << "Leading central jet chosen with eta=" << (*myJets)[iJet].eta() << endl;
-			break;
-		}else if(iJet == (*myJets).size()){
-			cout << "No leading central jet!" << endl;
-			return (0);
+	
+	//cout << "# large R jet = " << (*largeRJets).size() << endl;
+	for (int iJet = 0; iJet < (*largeRJets).size(); iJet++){
+		// Count b in every 0.8 jets
+		totalB = 0;
+		trimmedJet = sd((*largeRJets)[iJet]);
+		fastjet::PseudoJet rec_jet_ca_inf = recluster_ca_inf(trimmedJet);
+		*pieces = rec_jet_ca_inf.pieces();
+		for (int r = 0; r < (*pieces).size(); r++){
+			for (int rr = 0; rr < (*bs).size(); rr++){
+				if ((*bs)[rr].delta_R((*pieces)[r]) < 0.2){
+					totalB++;
+					break;
+				}
+			}
 		}
-	
-	}
-	
+		
+		//cout << "iJet" << iJet << " #b= " << totalB 
+                //     << ", (" << pow(pow(trimmedJet.px(), 2) + pow(trimmedJet.py(), 2), 0.5) 
+                //     << ", " << trimmedJet.eta() 
+                //     << ", " << trimmedJet.phi()
+		//     << ", " << trimmedJet.m() 
+		//     << ") d eta=" << pythia8->event[ipHiggs].eta() - trimmedJet.eta() 
+		//     << ", d phi=" << pythia8->event[ipHiggs].phi() - trimmedJet.phi() << endl;
 
-	trimmedJet = sd((*myJets)[leadingCentralJetId]);
+		// Check if jet is >2 b-tagged and central jet		
+		if (totalB >= 2 && (*largeRJets)[iJet].eta() < 2 && (*largeRJets)[iJet].eta() > -2){
+			leadingCentralJetId = iJet;
+			cout << "Leading central jet chosen with eta=" << (*largeRJets)[iJet].eta() << endl;
+			break;
+		}else if(iJet == (*largeRJets).size()-1){
+			cout << "No leading central b-tagged jet!" << endl;
+			numBTAG++;
+			destroy();
+			return (0);
+		}			
+	}
+
+	trimmedJet = sd((*largeRJets)[leadingCentralJetId]);
+	fastjet::PseudoJet rec_jet_ca_inf = recluster_ca_inf(trimmedJet);
 	*pieces = trimmedJet.pieces();
 	constit = trimmedJet.constituents();
 	cSize = constit.size();
-
-		
-	//Code for looking back in the tree
-	/*
-	int r = 0;
-	totalB = 0;
-	while (r < cSize){
-		jetIndices.push_back(constit[r].user_info<MyUserInfo>().pythia_id());
-		r++;
-	}
-	for (it = jetIndices.begin(); it != jetIndices.end(); ++it){
-		//cout << jetIndices.size() << " " << *it << endl;
-		//cout << *it <<" "<<pythia8->event[*it].mother1() <<" "<< pythia8->event[*it].mother2() <<" "<< pythia8->event[*it].id() << endl;
-		if (*it == 0){
-			continue;
-		}
-		if (jetIndices.end() == std::find(jetIndices.begin(), jetIndices.end(), pythia8->event[*it].mother1())){
-			jetIndices.push_back(pythia8->event[*it].mother1());
-		}
-		if (jetIndices.end() == std::find(jetIndices.begin(), jetIndices.end(), pythia8->event[*it].mother2())){
-			jetIndices.push_back(pythia8->event[*it].mother2());
-		}
-		if ((pythia8->event[*it].id())==5){
-			if (totalB == 0){
-				totalB = 1;
-			}
-			if (totalB == -1){
-				totalB = 2;
-			}
-		}
-		else if ((pythia8->event[*it].id()) == -5){
-			if (totalB == 0){
-				totalB = -1;
-			}
-			if (totalB == 1){
-				totalB = 2;
-			}
-		}
-	}
-	jetIndices.clear();
-	if (totalB == 2){
-		//pythia8->event.list();
-	}
-	*/
 	
-	/*
-	r = 0;
-	while (r < jetIndices.size()){
-		if (jetIndices[r] == 0){
-			r++;
-			continue;
-		}
-		jetIndices.push_back(pythia8->event[jetIndices[r]].mother1());
-		jetIndices.push_back(pythia8->event[jetIndices[r]].mother2());
-		if (fabs(pythia8->event[jetIndices[r]].id() == 5){
-			totalB++;
-		}
-	}
-	*/
-	
-	
-	/*
-	totalB = 0;
-	for (int r = 0; r < (*bhadrons).size(); r++){
-		if ((*bhadrons)[r].pt() < 5) continue;
-		if ((*bhadrons)[r].delta_R(trimmedJet) < jetRad){
-			totalB++;
-		}
-	}
-	*/
-
-	//Code for looking at the pieces
-	
-	/*
-	totalB = 0;
-	for (int r = 0; r < (*pieces).size(); r++){
-	for (int rr = 0; rr < (*bhadrons).size(); rr++){
-		if ((*bhadrons)[rr].pt() < 5) continue;
-		//if ((*bhadrons)[rr].delta_R((*pieces)[r]) < 0.001){
-		//	totalB++;
-		//}
-		if ((*bhadrons)[rr].delta_R((*pieces)[r]) < 0.2*(*bhadrons)[rr].delta_R((*pieces)[(r+1)%2])){
-			totalB++;
-		}
-	}
-	}
-	*/
-
-	//cout << "about to B" << endl;
-	
-	
-	
-	
-	totalB = 0;
-	fastjet::PseudoJet rec_jet_ca_inf = recluster_ca_inf(trimmedJet);
-	*pieces = rec_jet_ca_inf.pieces();
-	for (int r = 0; r < (*pieces).size(); r++){
-		/*
-		if ((*pieces)[r].pt() < 100){
-			continue;
-		}
-		*/
-		
-		/*
-		for (int rr = 0; rr < (*bhadrons).size(); rr++){
-			if ((*bhadrons)[rr].delta_R((*pieces)[r]) < 0.2){
-				for (int rrr = 0; rrr < (*pieces).size(); rrr++){
-					if (rrr == r) continue;
-					if ((*bhadrons)[rr].delta_R((*pieces)[rrr]) < 0.2){
-						totalB--;
-						break;
-					}
-				}
-				totalB++;
-				break;
-			}
-		}
-		*/
-		
-		
-		for (int rr = 0; rr < (*bs).size(); rr++){
-			if ((*bs)[rr].delta_R((*pieces)[r]) < 0.2){
-				totalB++;
-				break;
-			}
-		}
-		
-	}
-
-	/*
-	for (int r = 0; r < (*pieces).size(); r++){
-	for (int rr = 0; rr < (*bhadrons).size(); rr++){
-		if ((*bhadrons)[rr].delta_R((*pieces)[r]) < 0.1){
-			continue;
-		}
-	for (int rrr = 0; rrr < (*pieces).size(); rrr++){
-		if ((*bhadrons)[rr].delta_R((*pieces)[r]) > (*bhadrons)[rr].delta_R((*pieces)[rrr])){
-			break;
-		}
-		if (rrr == (*pieces).size() - 1){
-			totalB++;
-		}
-		if (rrr == r){continue;}
-		
-	}}}*/
-	
-		
-	//pt cut - For now on the base jet (why am I not using trimmed?)
-	//if ((*myJets)[0].pt() < 400){
-	if ((*myJets)[0].pt() < 450){
+	// See discarded-b-tagging1.txt
+	// pt cut - For now on the base jet (why am I not using trimmed?)
+	// if ((*largeRJets)[0].pt() < 400){
+	if ((*largeRJets)[leadingCentralJetId].pt() < 450){
 		numPTCUT++;
 		destroy();
 		return (0);
@@ -348,12 +232,12 @@ float myexampleAnalysis::AnalyzeEvent(int ievt, Pythia8::Pythia* pythia8){
 
 
 	
-	
-	if (totalB != 2){
-		numBTAG++;
-		destroy();
-		return(0);
-	}
+	// B-tagging is put before leading jet selection
+	//if (totalB != 2){
+	//	numBTAG++;
+	//	destroy();
+	//	return(0);
+	//}
 
 
 
@@ -398,7 +282,7 @@ float myexampleAnalysis::AnalyzeEvent(int ievt, Pythia8::Pythia* pythia8){
 
 	//Now we do a cut on rho, but we need to get the softdrop working first
 
-	rho = log(pow(trimmedJet.m(),2)/pow((*myJets)[0].pt(),2)); //Use the ungroomed pt
+	rho = log(pow(trimmedJet.m(),2)/pow((*largeRJets)[leadingCentralJetId].pt(),2)); //Use the ungroomed pt
 	if (rho <= -6){
 		numRHO++;
 		destroy();
@@ -457,7 +341,7 @@ float myexampleAnalysis::AnalyzeEvent(int ievt, Pythia8::Pythia* pythia8){
 
 	/*
 	delete largeRClusterSequence;
-	delete myJets;
+	delete largeRJets;
 	delete particlesForJets;
 	delete bhadrons;
 	*/
