@@ -1,6 +1,4 @@
 #!/bin/bash
-lsetup "root 6.14.04-x86_64-slc6-gcc62-opt"
-
 
 # creating folders
 mkdir -p ggh-hj-csv
@@ -9,9 +7,9 @@ mkdir -p ggh-hj-csv
 
 for f in ggh-hj-lhe/*.lhe;
   do 
-  echo $f
-  seed=$f | sed 's/[^0-9]*//g' 
-  ./myexample.exe hj.cmnd ggh-hj-csv/$seed.csv $f >> ggh-hj-csv/shower.log    
+  echo $'processing file: '$f 
+  seed=$(echo $f|sed 's/[^0-9]*//g') 
+  ./myexample.exe hj.cmnd ggh-hj-csv/$seed $f >> ggh-hj-csv/shower.log    
   done
 
 
