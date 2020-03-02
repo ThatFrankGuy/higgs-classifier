@@ -181,14 +181,32 @@ int main(int argc, char* argv[]) {
 
 		int iev = 0;
 		float trimmedJetMass = 0;
-
+		float higgsJet[4]; // The target array. It will contain [pt, eta, phi, m] after the method is executed.
+						   // It will be [0, 0, 0, -10] if there is an error
+						   // It will be [0, 0, 0, 0] if an event is filtered
 		// Start generation loop
+		// This will result in a .csv file with format:
+		// particle pT, eta, phi, m, id, isCharged \n  \
+		// particle pT, eta, phi, m, id, isCharged \n  |
+		// ...                                         > an event
+		// particle pT, eta, phi, m, id, isCharged \n  |
+		// higgs jet pT, eta, phi, m.\n                /
+		// \n                                            an empty line
+		// particle pT, eta, phi, m, id, isCharged \n  \
+		// particle pT, eta, phi, m, id, isCharged \n  |
+		// ...                                         > an event
+		// particle pT, eta, phi, m, id, isCharged \n  |
+		// higgs jet pT, eta, phi, m.\n                /
+		// \n                                            an empty line
+		// ...
 		while (pythia.info.nSelected() < nEvent) {
 			numTotal++;
-			trimmedJetMass = analysis1 -> AnalyzeEvent(iev, & pythia);
-
-
-			if (trimmedJetMass == -10) {
+			higgsJet = [0,0,0,0];
+			analysis1 -> AnalyzeEvent(&pythia, &higgsJet[0]);			
+			cout << "higgs output test ----- main ";
+			cout << higgsJet << endl;
+			trimmedJetMass = higgsJet[3];
+			if (trimmedJetMass < -9) {
 				numFailed++;
 				if (pythia.info.atEndOfFile()) break;
 				if (pythia.info.nSelected() == 0){
@@ -228,6 +246,12 @@ int main(int argc, char* argv[]) {
 					myfile << "\n";
 
 				}
+				myfile << higgsJet[0];
+				myfile << ",";
+				myfile << higgsJet[1];
+				myfile << ",";
+				myfile << higgsJet[2];
+				myfile << ",";
 				myfile << trimmedJetMass << ".\n";
 				myfile << "\n";
 				numSelected++;

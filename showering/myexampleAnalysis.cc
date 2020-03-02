@@ -30,6 +30,7 @@
 #include "Pythia8/Pythia.h"
 
 using namespace std;
+
 // Constructor 
 myexampleAnalysis::myexampleAnalysis(){
 
@@ -65,7 +66,6 @@ fastjet::ClusterSequence *largeRClusterSequence;
 std::vector<fastjet::PseudoJet> *particlesForJets; 
 fastjet::PseudoJet *p; 
 std::vector <fastjet::PseudoJet> *largeRJets; 
-std::vector <fastjet::PseudoJet> *bhadrons;
 std::vector <fastjet::PseudoJet> *bs;
 std::vector <fastjet::PseudoJet> *pieces;
 int idmod; //For tagging b-hadrons
@@ -89,13 +89,14 @@ void destroy(){
 	delete largeRClusterSequence;
 	delete largeRJets;
 	delete particlesForJets;
-	delete bhadrons;
 	delete bs;
 	delete pieces;
 }
 
-// Analyze
-float myexampleAnalysis::AnalyzeEvent(int ievt, Pythia8::Pythia* pythia8){
+// Perform clustering and pre-selection. The first argument is the showered event. 
+// The second argument is a target array to write higgs jet information to.
+// This target must be a float[4]. It will contain [pt, eta, phi, m] after the method is executed.
+void myexampleAnalysis::AnalyzeEvent(Pythia8::Pythia* pythia8, float *target){
 	
 	//cout << endl;
 	//cout << endl;
@@ -105,7 +106,11 @@ float myexampleAnalysis::AnalyzeEvent(int ievt, Pythia8::Pythia* pythia8){
 	if (!pythia8->next()){
 		cout << "Failed in Analysis" << endl;
 		failed++;
-		return (-10);
+		target[0] = 0; //pT
+		target[1] = 0; //eta
+		target[2] = 0; //phi
+		target[3] = -10; //mass
+		return;
 	}
 	else{
 		//cout << "hm" << endl;
@@ -116,7 +121,6 @@ float myexampleAnalysis::AnalyzeEvent(int ievt, Pythia8::Pythia* pythia8){
 	pyMiss = 0;
 
 	particlesForJets = new std::vector<fastjet::PseudoJet>;
-	bhadrons = new std::vector<fastjet::PseudoJet>;
 	bs = new std::vector<fastjet::PseudoJet>;
 
 	int ipHiggs=-1;
@@ -129,10 +133,6 @@ float myexampleAnalysis::AnalyzeEvent(int ievt, Pythia8::Pythia* pythia8){
 		if (idmod == 5){
 			(*bs).push_back(*p);
 		}
-		if ((idmod >= 500 && idmod < 600) || (idmod >= 5000 && idmod < 6000)){
-			(*bhadrons).push_back(*p);
-		}
-
 		// Checking decay
 		if (pythia8->event[ip].idAbs() == 23 || pythia8->event[ip].idAbs() == 24 || pythia8->event[ip].idAbs() == 25){
  		//print PDG ID of two dauguers
@@ -211,7 +211,11 @@ float myexampleAnalysis::AnalyzeEvent(int ievt, Pythia8::Pythia* pythia8){
 			cout << "No leading central b-tagged jet!" << endl;
 			numBTAG++;
 			destroy();
-			return (0);
+			target[0] = 0; //pT
+			target[1] = 0; //eta
+			target[2] = 0; //phi
+			target[3] = 0; //mass
+			return;
 		}			
 	}
 
@@ -227,7 +231,11 @@ float myexampleAnalysis::AnalyzeEvent(int ievt, Pythia8::Pythia* pythia8){
 	if ((*largeRJets)[leadingCentralJetId].pt() < 450){
 		numPTCUT++;
 		destroy();
-		return (0);
+		target[0] = 0; //pT
+		target[1] = 0; //eta
+		target[2] = 0; //phi
+		target[3] = 0; //mass
+		return;
 	}	
 
 
@@ -255,7 +263,11 @@ float myexampleAnalysis::AnalyzeEvent(int ievt, Pythia8::Pythia* pythia8){
 			//cout << "Particle Level : Isolated Electron" << endl;
 			numISOLATED++;
 			destroy();
-			return (0);
+			target[0] = 0; //pT
+			target[1] = 0; //eta
+			target[2] = 0; //phi
+			target[3] = 0; //mass
+			return;
 		}
 	}
 	if (thisId == 13){
@@ -265,7 +277,11 @@ float myexampleAnalysis::AnalyzeEvent(int ievt, Pythia8::Pythia* pythia8){
 			//cout << "Particle Level : Isolated Muon" << endl;
 			numISOLATED++;
 			destroy();
-			return (0);
+			target[0] = 0; //pT
+			target[1] = 0; //eta
+			target[2] = 0; //phi
+			target[3] = 0; //mass
+			return;
 		}
 	}
 	if (thisId ==15){
@@ -275,7 +291,11 @@ float myexampleAnalysis::AnalyzeEvent(int ievt, Pythia8::Pythia* pythia8){
 			//cout << "Particle Level : Isolated Tau" << endl;
 			numISOLATED++;
 			destroy();
-			return (0);
+			target[0] = 0; //pT
+			target[1] = 0; //eta
+			target[2] = 0; //phi
+			target[3] = 0; //mass
+			return;
 		}
 	}
 	}
@@ -286,12 +306,20 @@ float myexampleAnalysis::AnalyzeEvent(int ievt, Pythia8::Pythia* pythia8){
 	if (rho <= -6){
 		numRHO++;
 		destroy();
-		return (0);
+		target[0] = 0; //pT
+		target[1] = 0; //eta
+		target[2] = 0; //phi
+		target[3] = 0; //mass
+		return;
 	}
 	if (rho >= -2.1){
 		numRHO++;
 		destroy();
-		return (0);
+		target[0] = 0; //pT
+		target[1] = 0; //eta
+		target[2] = 0; //phi
+		target[3] = 0; //mass
+		return;
 	}
 
 	//Now, lets actually just implement an N12 and see what kind of shenanigans we get
@@ -326,27 +354,31 @@ float myexampleAnalysis::AnalyzeEvent(int ievt, Pythia8::Pythia* pythia8){
 
 	float N2 = e3/pow(e2,2);
 	
-	
+	//N2 cut
 	if (N2 > 0.45){
-		//Here we cut
 		numN2++;
 		destroy();
-		return(0);
+		target[0] = 0; //pT
+		target[1] = 0; //eta
+		target[2] = 0; //phi
+		target[3] = 0; //mass
+		return;
 	}
 	
-	
-
-	success = trimmedJet.m();
-
-
 	/*
 	delete largeRClusterSequence;
 	delete largeRJets;
 	delete particlesForJets;
-	delete bhadrons;
 	*/
 	destroy();	
-	return (success);
+
+	//storing higgs jet information to target array
+	target[0] = trimmedJet.pow(pow(trimmedJet.px(), 2) + pow(trimmedJet.py(), 2), 0.5); //pT
+	target[1] = trimmedJet.eta(); //eta
+	target[2] = trimmedJet.phi(); //phi
+	target[3] = trimmedJet.m(); //mass
+	cout << "higgs output test - analysis ";
+	cout << target << endl;
 }
 
 

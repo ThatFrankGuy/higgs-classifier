@@ -2,9 +2,9 @@ import numpy as np
 import csv_decoder
 import os
 
-def save_binary(name_1='background', name_2 = 'signal', folder_name, process_1_event_list, process_2_event_list, process_1_mass_list, process_2_mass_list,\
+def save_binary(folder_name, process_1_event_list, process_2_event_list, process_1_mass_list, process_2_mass_list,\
         process_1_weight, process_2_weight, process_1_image_list, process_2_image_list,\
-        process_1_recluster_images, process_2_recluster_images):
+        process_1_recluster_images, process_2_recluster_images, name_1='background', name_2='signal'):
     if not os.path.exists(folder_name):
         os.makedirs(folder_name)
         
@@ -20,7 +20,7 @@ def save_binary(name_1='background', name_2 = 'signal', folder_name, process_1_e
     np.save(folder_name+'/'+name_1+'_recluster_images.npy', process_1_recluster_images)
     np.save(folder_name+'/'+name_2+'_recluster_images.npy', process_2_recluster_images)  
     
-def load_binary(name_1='background', name_2 = 'signal', folder_name):
+def load_binary(folder_name, name_1='background', name_2='signal'):
         
     # Saving all arrays with np.save (faster)
     new_process_1_event_list = np.load(folder_name+'/'+name_1+'_event_list.npy', allow_pickle=True)
@@ -39,7 +39,7 @@ def load_binary(name_1='background', name_2 = 'signal', folder_name):
         new_process_1_recluster_images, new_process_2_recluster_images
         
 # load events and recluster
-def load_cluster_binary(name_1='background', name_2 = 'signal', folder_name):
+def load_cluster_binary(folder_name, name_1='background', name_2='signal'):
         
     # Saving all arrays with np.save (faster)
     new_process_1_event_list = np.load(folder_name+'/'+name_1+'_event_list.npy')
