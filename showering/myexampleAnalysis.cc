@@ -373,11 +373,13 @@ void myexampleAnalysis::AnalyzeEvent(Pythia8::Pythia* pythia8, float *target){
 	destroy();	
 
 	//storing higgs jet information to target array
-	target[0] = trimmedJet.pow(pow(trimmedJet.px(), 2) + pow(trimmedJet.py(), 2), 0.5); //pT
+	target[0] = pow(pow(trimmedJet.px(), 2) + pow(trimmedJet.py(), 2), 0.5); //pT
 	target[1] = trimmedJet.eta(); //eta
 	target[2] = trimmedJet.phi(); //phi
 	target[3] = trimmedJet.m(); //mass
 	cout << "higgs output test - analysis ";
+	cout << target[0] << "," << target[1] << ",";
+	cout << target[2] << "," << target[3] << endl;
 	cout << target << endl;
 }
 

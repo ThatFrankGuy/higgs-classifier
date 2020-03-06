@@ -70,7 +70,7 @@ class myexampleAnalysis{
         ~myexampleAnalysis ();
         
         void Begin();
-        float AnalyzeEvent(int iEvt, Pythia8::Pythia *pythia8);
+        void AnalyzeEvent(Pythia8::Pythia* pythia8, float *target);
         void End();
         void DeclareBranches();
         void ResetBranches();

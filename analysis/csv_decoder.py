@@ -9,6 +9,7 @@ import os
 import re
 import time
 import sys
+from io import StringIO
 
 from itertools import groupby
 from io import StringIO
@@ -38,45 +39,51 @@ from pyjet.testdata import get_event
 # [PseudoJet(), PseudoJet(), ...](all events)
 
 # Reading CSV
-
+#
 # This function reads off the original CSV format: 
 # pt, eta, phi, m, id, isCharged \n
 # pt, eta, phi, m, id, isCharged \n
 # ... (of all particles in one event)
-# trimmed mass of identified jet \n
-# \n
+# pt, eta, phi, m, id, isCharged \n
+# higgs jet pT, eta, phi, m, evtweight \n\n
+#
 # and produces a event_list of
 # [[[pt, eta, phi, m, id, isCharged](a particle), ...](an event), ...](all events)
-def return_event_list(fileName,max_read = float("inf"),weighted=0,pt_cut=1):
+# a mass list, a weight list, and a list of higgs vectors
+def return_event_list(fileName,max_read = float("inf"),weighted=True,pt_cut=1):
 	
 	printed = 0
 	
-	event_list = [];mass_list = [];weight_list = [];
+	event_list = [];
+	mass_list = [];
+	weight_list = [];
+	higgs_jet_list = [];
 	tmp_events = open(fileName).read().split("\n\n")[:-1]
 	#print(len(tmp_events))
 	for x in tmp_events:
 		try:
 			if len(event_list) == max_read: #FRANK# limit event size. If violated, interrupt the entire method
 				return(event_list,mass_list)
-			if weighted == 0:
-								
+			if not weighted:
+				raise Exception('Warning: this analysis does not use unweighted CSV format. It is thus not implemented.')		
 				#FRANK# rfind finds the last occurance
 				#FRANK# [a:b] extract everything b/w a and bth elem, including ath and excluding bth
 				#FRANK# why isn't the cut applied to weight and mass list? #ISSUE#
 				
-				mass_list.append(float(x[x.rfind("\n")+1:-1]))
-				to_cut = np.array(np.genfromtxt(x[:x.rfind("\n")].splitlines(), delimiter=","))
-				event_list.append(to_cut[[x[0] > pt_cut for x in to_cut]])
+				# mass_list.append(float(x[x.rfind("\n")+1:-1]))
+				# to_cut = np.array(np.genfromtxt(x[:x.rfind("\n")].splitlines(), delimiter=","))
+				# event_list.append(to_cut[[x[0] > pt_cut for x in to_cut]])
 			else:
-				weight_list.append(float(x[x.rfind("\n")+1:]))
-				mass_list.append(float(x[x.rfind("\n",0,x.rfind("\n")-1)+1:x.rfind("\n")+1]))
-				to_cut = np.genfromtxt(x[:x.rfind("\n")].splitlines(),delimiter=",")
-				event_list.append(to_cut[[x[0] > pt_cut for x in to_cut]])
+				temp_event_array = np.genfromtxt(StringIO(x[:x.rfind("\n")]),delimiter=",") # The particles are stored before the last /n
+				event_list.append(to_cut[for x in temp_event_array]])
+				last_line_array = np.genfromtxt(StringIO(x[x.rfind("\n")+1:]), delimiter=",") # '\n' is a single character
+				mass_list.append(last_line_array[-1])
+				higgs_jet_list.append(last_line_array[:-1])
 		except:
 			print('Failed to decode CSV into np array. Make sure you have the correct format. ')
 			print( sys.exc_info()[0])
 			return
-	if weighted == 0:
+	if not weighted:
 		#print(mass_list[0])
 		return(event_list,mass_list)
 	else:
@@ -112,7 +119,7 @@ def return_image_list(event_list, width=40, height=40):
 
 # This method loads event files to produce:
 # event_list, mass_list, image_list, files_Read and weight_list
-def load_events(path, contains, debug = 0, max_read = float("inf"), max_files = float("inf"), weighted=0, \
+def load_events(path, contains, debug = 0, max_read = float("inf"), max_files = float("inf"), weighted=True, \
 				pt_cut = 0, width=40, height=40):
 	print('Loading .csv event files from ' + path + ' containing \"' + contains + '\"')
 	reading_event_list,reading_mass_list = [],[]
@@ -133,12 +140,11 @@ def load_events(path, contains, debug = 0, max_read = float("inf"), max_files = 
 			if debug==1:
 				print(i)
 				print(os.path.join(path,i))
-			if weighted==0:
+			if not weighted:
 				print(i)
-				temp_event_list,temp_mass_list = return_event_list(os.path.join(path,i),pt_cut=pt_cut)
+				temp_event_list,temp_mass_list = return_event_list(os.path.join(path,i),weighted=False,pt_cut=pt_cut)
 			else:
-				temp_event_list,temp_mass_list,temp_weight_list = return_event_list(os.path.join(path,i),
-																					weighted=1,pt_cut=pt_cut)
+				temp_event_list,temp_mass_list,temp_weight_list = return_event_list(os.path.join(path,i),weighted=True,pt_cut=pt_cut)
 				reading_weight_list = reading_weight_list = temp_weight_list
 			temp_image_list = return_image_list(temp_event_list, width, height)
 			if (len(temp_image_list) != len(temp_mass_list)):
@@ -149,7 +155,7 @@ def load_events(path, contains, debug = 0, max_read = float("inf"), max_files = 
 			reading_image_list = reading_image_list + temp_image_list
 			files_Read = files_Read + 1
 			print(str(files_Read) + "files processed.")
-	if weighted==0:
+	if not weighted:
 		return(reading_event_list,reading_mass_list,reading_image_list,files_Read)
 	else:
 		return(reading_event_list,reading_mass_list,reading_image_list,files_Read,reading_weight_list)

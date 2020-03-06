@@ -196,15 +196,35 @@ int main(int argc, char* argv[]) {
 		// particle pT, eta, phi, m, id, isCharged \n  |
 		// ...                                         > an event
 		// particle pT, eta, phi, m, id, isCharged \n  |
-		// higgs jet pT, eta, phi, m.\n                /
+		// higgs jet pT, eta, phi, m, evtweight \n     /
 		// \n                                            an empty line
 		// ...
 		while (pythia.info.nSelected() < nEvent) {
+
 			numTotal++;
-			higgsJet = [0,0,0,0];
+
+			// Get event weight(s).
+			double evtweight = pythia.info.weight();
+			// Additional PDF/alphaS weight for internal merging.
+
+			//we are not merging so this is tame
+			if (doMerge) evtweight *= pythia.info.mergingWeightNLO()
+				// Additional weight due to random choice of reclustered/non-reclustered
+				// treatment. Also contains additional sign for subtractive samples.
+				*setting -> getNormFactor();
+
+			// Do not print zero-weight events.
+			// if (evtweight == 0.) continue;
+
+			higgsJet[0] = 0;
+			higgsJet[1] = 0;
+			higgsJet[2] = 0;
+			higgsJet[3] = 0;
 			analysis1 -> AnalyzeEvent(&pythia, &higgsJet[0]);			
 			cout << "higgs output test ----- main ";
-			cout << higgsJet << endl;
+			cout << higgsJet[0] << "," << higgsJet[1] << ",";
+			cout << higgsJet[2] << "," << higgsJet[3] << endl;	
+			cout << "Event weight: " << evtweight << endl;
 			trimmedJetMass = higgsJet[3];
 			if (trimmedJetMass < -9) {
 				numFailed++;
@@ -246,13 +266,12 @@ int main(int argc, char* argv[]) {
 					myfile << "\n";
 
 				}
-				myfile << higgsJet[0];
-				myfile << ",";
-				myfile << higgsJet[1];
-				myfile << ",";
-				myfile << higgsJet[2];
-				myfile << ",";
-				myfile << trimmedJetMass << ".\n";
+				myfile << higgsJet[0] << ",";
+				myfile << higgsJet[1] << ",";
+				myfile << higgsJet[2] << ",";
+				myfile << trimmedJetMass << ",";
+				myfile << evtweight << "\n";
+
 				myfile << "\n";
 				numSelected++;
 			}
@@ -261,24 +280,9 @@ int main(int argc, char* argv[]) {
 				cout << "Running on " << iev << " rioght now" << endl;
 			}
 
-			// Get event weight(s).
-			double evtweight = pythia.info.weight();
-			// Additional PDF/alphaS weight for internal merging.
-
-			//we are not merging so this is tame
-			if (doMerge) evtweight *= pythia.info.mergingWeightNLO()
-				// Additional weight due to random choice of reclustered/non-reclustered
-				// treatment. Also contains additional sign for subtractive samples.
-				*setting -> getNormFactor();
-
-			//cout << pythia.info.weight() << endl;
-
-			// Do not print zero-weight events.
-			if (evtweight == 0.) continue;
-			// Construct new empty HepMC event.
-			//HepMC::GenEvent* hepmcevt = new HepMC::GenEvent();
 
 			// Work with weighted (LHA strategy=-4) events.
+			// What is this used for?
 			double normhepmc = 1.;
 			if (abs(pythia.info.lhaStrategy()) == 4)
 				normhepmc = 1. / double(1e9 * nEvent);
@@ -286,6 +290,9 @@ int main(int argc, char* argv[]) {
 			else
 				normhepmc = xs / double(1e9 * nEvent);
 
+
+			// Construct new empty HepMC event.
+			//HepMC::GenEvent* hepmcevt = new HepMC::GenEvent();
 			// Set event weight
 			//hepmcevt->weights().push_back(evtweight*normhepmc);
 			// Fill HepMC event
