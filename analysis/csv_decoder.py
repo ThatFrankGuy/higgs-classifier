@@ -48,9 +48,9 @@ from pyjet.testdata import get_event
 # higgs jet pT, eta, phi, m, evtweight \n\n
 #
 # and produces a event_list of
-# [[[pt, eta, phi, m, id, isCharged](a particle), ...](an event), ...](all events)
-# a mass list, a weight list, and a list of higgs vectors
-def return_event_list(fileName,max_read = float("inf"),weighted=True,pt_cut=1):
+# [np.array[[pt, eta, phi, m, id, isCharged](a particle), ...](an event), ...](all events)
+# a mass list, a list of higgs vectors, and a weight list
+def return_event_list(fileName,max_read = float('inf'),weighted=True,pt_cut=1):
 	
 	printed = 0
 	
@@ -58,36 +58,35 @@ def return_event_list(fileName,max_read = float("inf"),weighted=True,pt_cut=1):
 	mass_list = [];
 	weight_list = [];
 	higgs_jet_list = [];
-	tmp_events = open(fileName).read().split("\n\n")[:-1]
-	#print(len(tmp_events))
+	tmp_events = open(fileName).read().split('\n\n')[:-1]
+	#print(len(tmp_events))	
+	if not weighted:
+		raise Exception('Warning: this analysis does not use unweighted CSV format. Please check implementation.')	
+		#print(mass_list[0])
 	for x in tmp_events:
-		try:
-			if len(event_list) == max_read: #FRANK# limit event size. If violated, interrupt the entire method
-				return(event_list,mass_list)
-			if not weighted:
-				raise Exception('Warning: this analysis does not use unweighted CSV format. It is thus not implemented.')		
+		#try:
+		if len(event_list) == max_read: #FRANK# limit event size. If violated, interrupt the entire method
+			return(event_list,mass_list,higgs_jet_list,weight_list)
+			#if not weighted:
 				#FRANK# rfind finds the last occurance
 				#FRANK# [a:b] extract everything b/w a and bth elem, including ath and excluding bth
 				#FRANK# why isn't the cut applied to weight and mass list? #ISSUE#
 				
-				# mass_list.append(float(x[x.rfind("\n")+1:-1]))
-				# to_cut = np.array(np.genfromtxt(x[:x.rfind("\n")].splitlines(), delimiter=","))
+				# mass_list.append(float(x[x.rfind('\n')+1:-1]))
+				# to_cut = np.array(np.genfromtxt(x[:x.rfind('\n')].splitlines(), delimiter=','))
 				# event_list.append(to_cut[[x[0] > pt_cut for x in to_cut]])
-			else:
-				temp_event_array = np.genfromtxt(StringIO(x[:x.rfind("\n")]),delimiter=",") # The particles are stored before the last /n
-				event_list.append(to_cut[for x in temp_event_array]])
-				last_line_array = np.genfromtxt(StringIO(x[x.rfind("\n")+1:]), delimiter=",") # '\n' is a single character
-				mass_list.append(last_line_array[-1])
-				higgs_jet_list.append(last_line_array[:-1])
-		except:
-			print('Failed to decode CSV into np array. Make sure you have the correct format. ')
-			print( sys.exc_info()[0])
-			return
-	if not weighted:
-		#print(mass_list[0])
-		return(event_list,mass_list)
-	else:
-		return(event_list,mass_list,weight_list)
+		temp_event_array = np.genfromtxt(StringIO(x[:x.rfind('\n')]),delimiter=',') # The particles are stored before the last /n
+		event_list.append(temp_event_array)
+		last_line_array = np.genfromtxt(StringIO(x[x.rfind('\n')+1:]), delimiter=',') # '\n' is a single character
+		weight_list.append(last_line_array[-1])
+		mass_list.append(last_line_array[-2])
+		higgs_jet_list.append(last_line_array[:-1])
+		#except:
+		#	print('Failed to decode CSV into np array. Make sure you have the correct format. ')
+		#	print( sys.exc_info()[0])
+		#	return
+
+	return(event_list,mass_list,higgs_jet_list,weight_list)
 
 #FRANK# Converting event_list to event image
 def return_image_list(event_list, width=40, height=40):
@@ -118,47 +117,53 @@ def return_image_list(event_list, width=40, height=40):
 	return(image_list)
 
 # This method loads event files to produce:
-# event_list, mass_list, image_list, files_Read and weight_list
-def load_events(path, contains, debug = 0, max_read = float("inf"), max_files = float("inf"), weighted=True, \
+# event_list, mass_list, image_list, higgs_list, weight_list, files_read
+def load_events(path, contains, debug = False, max_read = float('inf'), max_files = float('inf'), weighted=True, \
 				pt_cut = 0, width=40, height=40):
-	print('Loading .csv event files from ' + path + ' containing \"' + contains + '\"')
-	reading_event_list,reading_mass_list = [],[]
+	print('Loading .csv event files from ' + path + ' containing \'' + contains + '\'')
+	reading_event_list = []
+	reading_mass_list = []
 	reading_image_list = []
+	reading_higgs_list = []
 	reading_weight_list = []
-	files_Read = 0
+	files_read = 0
 	print('List of files is: '+ str(os.listdir(path)))
 	for i in os.listdir(path):
 		print('Currently reading: '+ str(i))
 		
-		if (files_Read == max_files):
+		if (files_read == max_files):
 			break
 		if len(reading_event_list) >= max_read:
-			return(reading_event_list,reading_mass_list,reading_image_list,files_Read)
+			return(reading_event_list,reading_mass_list,reading_image_list,files_read)
 		if 'swp' in i:
 			continue
-		if os.path.isfile(os.path.join(path,i)) and (contains) in i:
-			if debug==1:
+		if os.path.isfile(os.path.join(path,i)) and (contains in i):
+			if debug:
 				print(i)
 				print(os.path.join(path,i))
-			if not weighted:
-				print(i)
-				temp_event_list,temp_mass_list = return_event_list(os.path.join(path,i),weighted=False,pt_cut=pt_cut)
-			else:
-				temp_event_list,temp_mass_list,temp_weight_list = return_event_list(os.path.join(path,i),weighted=True,pt_cut=pt_cut)
-				reading_weight_list = reading_weight_list = temp_weight_list
+			if not weighted:				
+				raise Exception('Warning: this analysis does not use unweighted CSV format. Please check implementation.')		
+			
+			temp_event_list,temp_mass_list,temp_higgs_list,temp_weight_list = return_event_list(os.path.join(path,i),weighted=weighted,pt_cut=pt_cut)
+			
+			
 			temp_image_list = return_image_list(temp_event_list, width, height)
 			if (len(temp_image_list) != len(temp_mass_list)):
-				print("Image production failure: #image != #weight")
-				print("File: " + str(os.path.join(path,i)))
+				print('Image production failure: #image != #weight')
+				print('File: ' + str(os.path.join(path,i)))
+
+			reading_weight_list = reading_weight_list + temp_weight_list
+			reading_higgs_list = reading_higgs_list + temp_higgs_list
 			reading_event_list = reading_event_list + temp_event_list
 			reading_mass_list = reading_mass_list + temp_mass_list
 			reading_image_list = reading_image_list + temp_image_list
-			files_Read = files_Read + 1
-			print(str(files_Read) + "files processed.")
-	if not weighted:
-		return(reading_event_list,reading_mass_list,reading_image_list,files_Read)
-	else:
-		return(reading_event_list,reading_mass_list,reading_image_list,files_Read,reading_weight_list)
+
+			files_read = files_read + 1
+
+			print(str(files_read) + 'files processed.')
+	#if not weighted:
+		#return(reading_event_list,reading_mass_list,reading_image_list,files_read)
+	return(reading_event_list,reading_mass_list,reading_image_list,reading_higgs_list,reading_weight_list,files_read)
 
 # This is not used. 
 def return_fine_image_list(event_list, event_list_clustered, granularity, which_jet = 0, width=40, height=40):
@@ -223,16 +228,62 @@ def cluster_event(event_list):
 		event_list_clustered.append(jets_cluster)
 	return(event_list_clustered)
 
-def recluster_event(cluster_list):
+# return 2 lists of:
+# 1. 0.2 jets from each non-higgs leading jet
+# 2. fastjet objects of these non-higgs leading jet
+def recluster_event(cluster_list, higgs_list):
 	reclustered_list = []
+	target_jet_list = []
+
+	if len(cluster_list) != len(higgs_list):
+		raise Exception('Large R jet list and higgs jet list does not have the same length. Check implementation.')
+
+	# loop over all events
 	for i in range(len(cluster_list)):
-		sequence_Cluster = cluster((cluster_list[i][1]), R=0.2,p=-1)
-		jets_Cluster = sequence_Cluster.inclusive_jets()
-		reclustered_list.append(jets_Cluster)
-	return(reclustered_list)
+		# loop over all 0.8 jets
+		# higgs_list is [[pT, eta, phi, m], ... ]
+
+		# we find the jet with smallest squared difference
+		min_square_error = float('inf')
+		# index of higgs large-r jet in the current event
+		higgs_index = 0
+
+		# loop over each 0.8 jet in an event
+		for j in range(len(cluster_list[i])):
+
+			large_r_jet = cluster_list[i][j]
+			higgs_jet = higgs_list[i]
 
 
-def return_fine_image_list_reclustered(event_list, event_list_reclustered, radius, which_jet = 0,verbose = False, width=40, height=40):
+			current_square_error = (large_r_jet.pt - higgs_jet[0])**2 \
+							+(large_r_jet.eta - higgs_jet[1])**2 \
+							+(large_r_jet.phi - higgs_jet[2])**2 \
+							+(large_r_jet.mass - higgs_jet[3])**2
+
+			if current_square_error < min_square_error:
+				higgs_index = j
+				min_square_error = current_square_error
+
+		#print('Higgs jet from CSV - ' + str(higgs_jet))
+		#print('Higgs jet found ---- ' + str(cluster_list[i][higgs_index]) + ' at ' + str(higgs_index))
+		#print('Higgs index: ' + str(higgs_index))
+
+		# the other jet is either close to higgs (Hj, VH), or much slower (Hjj, VBF)
+		# if higgs jet is second leading jet, then output the leading. If higgs is not, then output the one behind it
+		if higgs_index==1:
+			target_jet = cluster_list[i][0]
+		else:			
+			target_jet = cluster_list[i][higgs_index+1]	
+
+		target_jet_list.append(target_jet)
+		sequence_cluster = cluster((target_jet), R=0.2,p=-1)			
+		new_jets_cluster = sequence_cluster.inclusive_jets()
+		reclustered_list.append(new_jets_cluster)	
+
+	return(reclustered_list, target_jet_list)
+
+
+def return_jet_image_list(event_list, event_list_reclustered, radius, verbose = False, width=40, height=40):
 	image_list = []
 	image_0 = np.zeros((width,height)) #Neutral pt
 	image_1 = np.zeros((width,height)) #Charged pt
@@ -248,6 +299,7 @@ def return_fine_image_list_reclustered(event_list, event_list_reclustered, radiu
 		image_1 = np.zeros((width,height))
 		image_2 = np.zeros((width,height))
 		
+		# first create basis aligned from leading to second leading jet
 		if (len(event_list_reclustered[z]) > 1):
 			#First, let's find the direction of the second-hardest jet relative to the first-hardest jet
 			phi_dir = -(dphi(event_list_reclustered[z][1].phi,event_list_reclustered[z][0].phi))
@@ -265,7 +317,7 @@ def return_fine_image_list_reclustered(event_list, event_list_reclustered, radiu
 		if verbose==True:
 			print(x_hat,y_hat,norm_dir)
 			
-		
+		# loop over all jets
 		for x in range(len(event_list[z])):
 			if (len(event_list_reclustered[z]) == 1):
 				#In the case that the reclustering only found one hard jet (that seems kind of bad, but hey)
@@ -297,7 +349,7 @@ def return_fine_image_list_reclustered(event_list, event_list_reclustered, radiu
 		image_1 = np.divide(image_1,np.sum(image_1))
 		image_2 = np.divide(image_2,np.sum(image_2))
 		image_list.append(np.array([image_0,image_1,image_2]))
-	print("Number of events with only one constituent in leading jet: " + str(no_two))
+	print('Number of events with only one constituent in leading jet: ' + str(no_two))
 	return(image_list)
 
 # Correct phi range
@@ -362,7 +414,7 @@ class Node(object):
 	def add_child(self,obj):
 		self.children.append(obj)
 
-def softdrop(jcon,z=0.1,debug = 0):
+def softdrop(jcon,z=0.1,debug = False):
 	#Takes the constituents of a jet, and softdrops it.
 	#First, we need to step through the jet and build the tree of clustering
 	#Since we are reclustering the whole thing; just take R = 1; i.e. dont need to think about it
@@ -380,13 +432,13 @@ def softdrop(jcon,z=0.1,debug = 0):
 			if node.data[1] == 1:
 				how_many = how_many + 1
 		return how_many
-	if debug == 1:
-		print("len(nodes) : " + str(len(nodes)))
+	if debug:
+		print('len(nodes) : ' + str(len(nodes)))
 		print(nodes)
 	rep = 0
 	while how_many_pseudo(nodes) > 1:
 		#print(how_many_pseudo(nodes))
-		min_distance = float("inf")
+		min_distance = float('inf')
 		min_index = [0,0]
 		for i in range(0,len(nodes)):
 			if nodes[i].data[1] == 0: #Its already part of something else
@@ -422,7 +474,7 @@ def softdrop(jcon,z=0.1,debug = 0):
 			softcon.append(to_check[0].data[0])
 			to_check.pop(0)
 			continue
-		if min(our_childs[0].data[0].pt,our_childs[1].data[0].pt)/  \
+		if min(our_childs[0].data[0].pt,our_childs[1].data[0].pt)/\
 						(our_childs[0].data[0].pt+our_childs[1].data[0].pt) > z:
 			to_check.append(our_childs[0])
 			to_check.append(our_childs[1])

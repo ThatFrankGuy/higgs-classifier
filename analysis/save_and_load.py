@@ -1,56 +1,41 @@
 import numpy as np
+import pickle
 import csv_decoder
 import os
 
-def save_binary(folder_name, process_1_event_list, process_2_event_list, process_1_mass_list, process_2_mass_list,\
-        process_1_weight, process_2_weight, process_1_image_list, process_2_image_list,\
-        process_1_recluster_images, process_2_recluster_images, name_1='background', name_2='signal'):
-    if not os.path.exists(folder_name):
-        os.makedirs(folder_name)
-        
-    # Saving all arrays with np.save (faster)
-    np.save(folder_name+'/'+name_1+'_event_list.npy', process_1_event_list)
-    np.save(folder_name+'/'+name_2+'_event_list.npy', process_2_event_list)
-    np.save(folder_name+'/'+name_1+'_mass_list.npy', process_1_mass_list)
-    np.save(folder_name+'/'+name_2+'_mass_list.npy', process_2_mass_list)
-    np.save(folder_name+'/'+name_1+'_weight.npy', process_1_weight)
-    np.save(folder_name+'/'+name_2+'_weight.npy', process_2_weight)
-    np.save(folder_name+'/'+name_1+'_image_list.npy', process_1_image_list)
-    np.save(folder_name+'/'+name_2+'_image_list.npy', process_2_image_list)
-    np.save(folder_name+'/'+name_1+'_recluster_images.npy', process_1_recluster_images)
-    np.save(folder_name+'/'+name_2+'_recluster_images.npy', process_2_recluster_images)  
-    
-def load_binary(folder_name, name_1='background', name_2='signal'):
-        
-    # Saving all arrays with np.save (faster)
-    new_process_1_event_list = np.load(folder_name+'/'+name_1+'_event_list.npy', allow_pickle=True)
-    new_process_2_event_list = np.load(folder_name+'/'+name_2+'_event_list.npy', allow_pickle=True)
-    new_process_1_mass_list = np.load(folder_name+'/'+name_1+'_mass_list.npy', allow_pickle=True)
-    new_process_2_mass_list = np.load(folder_name+'/'+name_2+'_mass_list.npy', allow_pickle=True)
-    new_process_1_weight = float(np.load(folder_name+'/'+name_1+'_weight.npy', allow_pickle=True))
-    new_process_2_weight = float(np.load(folder_name+'/'+name_2+'_weight.npy', allow_pickle=True))
-    new_process_1_image_list = np.load(folder_name+'/'+name_1+'_image_list.npy', allow_pickle=True)
-    new_process_2_image_list = np.load(folder_name+'/'+name_2+'_image_list.npy', allow_pickle=True)
-    new_process_1_recluster_images = np.load(folder_name+'/'+name_1+'_recluster_images.npy', allow_pickle=True)
-    new_process_2_recluster_images = np.load(folder_name+'/'+name_2+'_recluster_images.npy', allow_pickle=True)
-    
-    return new_process_1_event_list, new_process_2_event_list, new_process_1_mass_list, new_process_2_mass_list,\
-        new_process_1_weight, new_process_2_weight, new_process_1_image_list, new_process_2_image_list,\
-        new_process_1_recluster_images, new_process_2_recluster_images
-        
-# load events and recluster
-def load_cluster_binary(folder_name, name_1='background', name_2='signal'):
-        
-    # Saving all arrays with np.save (faster)
-    new_process_1_event_list = np.load(folder_name+'/'+name_1+'_event_list.npy')
-    new_process_2_event_list = np.load(folder_name+'/'+name_2+'_event_list.npy')
-    
-    new_process_1_event_list_clustered = cluster_event(process_1_event_list)
-    new_process_2_event_list_clustered = cluster_event(process_2_event_list)
-    
-    new_process_1_reclustered = recluster_event(process_1_event_list_clustered)
-    new_process_2_reclustered = recluster_event(process_2_event_list_clustered)
+def save(folder_name, process_name, event_list, mass_list, higgs, weight, image_list, recluster_images):
+	if not os.path.exists(folder_name):
+		os.makedirs(folder_name)
+	if not os.path.exists(folder_name+'/'+ process_name + '_events/' ):
+		os.makedirs(folder_name+'/'+ process_name + '_events/' )
+		
+	# Saving each event into an individual npy file (safer)
+	for i in range(len(event_list)):
+		np.save(folder_name+'/'+ process_name + '_events/' + str(i) + '.npy', event_list[i])
 
-    
-    return new_process_1_event_list_clustered, new_process_2_event_list_clustered,\
-        new_process_1_reclustered, new_process_2_reclustered
+	# Saving all arrays with np.save (faster)
+
+	np.save(folder_name+'/'+process_name+'_mass_list.npy', mass_list)
+	np.save(folder_name+'/'+process_name+'_higgs.npy', higgs)
+	np.save(folder_name+'/'+process_name+'_weight.npy', weight)
+	np.save(folder_name+'/'+process_name+'_image_list.npy', image_list)
+	np.save(folder_name+'/'+process_name+'_recluster_images.npy', recluster_images) 
+	
+def load(folder_name, process_name):
+
+	# Loading all arrays with np.save (faster)
+	new_mass_list = np.load(folder_name+'/'+process_name+'_mass_list.npy', allow_pickle=True)
+	new_weight = np.load(folder_name+'/'+process_name+'_weight.npy', allow_pickle=True)
+	new_higgs = np.load(folder_name+'/'+process_name+'_higgs.npy', allow_pickle=True)
+	new_image_list = np.load(folder_name+'/'+process_name+'_image_list.npy', allow_pickle=True)
+	new_recluster_images = np.load(folder_name+'/'+process_name+'_recluster_images.npy', allow_pickle=True)
+	
+	new_event_list = []
+	for i in range(len(new_mass_list)):
+		new_event_list.append(np.load(folder_name+'/'+ process_name + '_events/' + str(i) + '.npy', allow_pickle=True))
+
+
+	return new_event_list, new_mass_list,\
+		new_higgs, new_weight, new_image_list,\
+		new_recluster_images
+		
